@@ -9,14 +9,15 @@ import ProfitLoss from '@/views/ProfitLoss.vue'
 import Repayments from '@/views/Repayments.vue'
 import Agents from '@/views/Agents.vue'
 import Logs from '@/views/Logs.vue'
+import HomeView from '@/views/HomeView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'login',
-      component: Login
+      name: 'home',
+      component: HomeView
     },
     {
       path: '/dashboard',
