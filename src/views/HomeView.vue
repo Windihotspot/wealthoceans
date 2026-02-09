@@ -21,7 +21,7 @@
       <div
         class="inline-flex items-center px-4 py-1.5 mb-8 text-xs font-medium rounded-full bg-white/10 text-white backdrop-blur border border-white/10"
       >
-        Waitlister AI STOCK
+        WEALTHOCEANS
       </div>
 
       <!-- Headline -->
