@@ -1,106 +1,156 @@
 <template>
-  <div
-    class="min-h-screen w-full bg-black relative overflow-hidden flex items-center justify-center"
+  
+
+  <v-container
+    fluid
+    class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-indigo-50 via-indigo-50 to-blue-50"
   >
-    <!-- Subtle Glow Background -->
-    <div class="absolute inset-0 bg-gradient-radial from-blue-900/20 via-black to-black"></div>
+    <!-- Logo (Top Left Inside Container) -->
+<div class="absolute top-6 left-6 z-20 flex items-center">
+  <img
+    src="../assets/wealthoceans-removebg-preview.png"
+    alt="Wealth Oceans"
+    class="h-14 md:h-16 w-auto"
+  />
+</div>
 
-    <!-- Star / Particle Effect (optional dots) -->
-    <div class="absolute inset-0 opacity-20">
-      <div
-        v-for="i in 80"
-        :key="i"
-        class="absolute w-[2px] h-[2px] bg-white rounded-full"
-        :style="randomStarStyle()"
-      ></div>
-    </div>
+     
 
-    <!-- Main Content -->
-    <div class="relative z-10 text-center px-6 max-w-3xl mx-auto">
-      <!-- Badge -->
-      <div
-        class="inline-flex items-center px-4 py-1.5 mb-8 text-xs font-medium rounded-full bg-white/10 text-white backdrop-blur border border-white/10"
-      >
-        WEALTHOCEANS
+    <div class="w-full max-w-7xl px-6 py-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <!-- LEFT COLUMN: Core Messaging -->
+      <!-- LEFT COLUMN: Core Messaging (Enhanced) -->
+      <div class="relative">
+        <!-- Accent badge -->
+        <div
+          class="inline-flex items-center px-4 py-2 rounded-full bg-purple-600/10 text-purple-700 text-sm font-semibold mb-6"
+        >
+          🚀 AI-Powered Lead Conversion
+        </div>
+
+        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
+          Stop Losing Leads <br />
+          <span
+            class="bg-gradient-to-r from-purple-600 to-purple-500 bg-clip-text text-transparent"
+          >
+            the Moment They Show Interest.
+          </span>
+        </h1>
+
+        <p class="text-lg md:text-xl text-gray-700 mb-8">
+          Most businesses don’t lose sales because of bad offers. They lose them because
+          <span class="font-semibold text-gray-900">
+            nothing happens when interest is highest.
+          </span>
+        </p>
+
+        <!-- Glass highlight card -->
+        <div
+          class="bg-white/60 backdrop-blur rounded-2xl p-6 mb-8 border border-white/40 shadow-sm"
+        >
+          <p class="text-gray-800 leading-relaxed mb-4">
+            Wealth Oceans Technologies is launching an
+            <span class="font-semibold text-purple-700"> AI-powered conversion system </span>
+            that captures leads, responds instantly, asks the right questions, and follows up across
+            your website, ads, and social DMs — even when your team is offline.
+          </p>
+
+          <p class="font-semibold text-gray-900 mb-3">
+            We call it the Intelligent Conversion Layer.
+          </p>
+
+          <ul class="space-y-2 text-gray-700">
+            <li>✅ No missed follow-ups</li>
+            <li>✅ No poor conversions</li>
+            <li>✅ No wasted ad spend</li>
+          </ul>
+        </div>
+
+        <!-- Brand -->
+        <div class="mt-10">
+          <p class="font-bold text-gray-900">Wealth Oceans Technologies Ltd</p>
+          <p class="text-sm text-gray-600">Lead. Nurture. Convert. With AI</p>
+        </div>
       </div>
 
-      <!-- Headline -->
-      <h1
-        class="text-white text-4xl md:text-6xl font-light leading-tight mb-6"
-      >
-        The wait is part <br />
-        of the
-        <span class="italic font-serif">journey.</span>
-      </h1>
+      <!-- RIGHT COLUMN: Waitlist Card -->
+      <div class="bg-white/90 backdrop-blur-xl rounded-3xl p-10 shadow-xl border border-white/40">
+        <h2 class="text-2xl font-bold mb-4">Join the waitlist</h2>
 
-      <!-- Subtext -->
-      <p class="text-gray-400 text-base md:text-lg mb-10">
-        Drive interest, collect emails, and build <br />
-        momentum ahead of your launch.
-      </p>
+        <p class="text-sm text-gray-600 mb-6">Enter your email to get early access.</p>
 
-      <!-- Email Input -->
-      <form
-        @submit.prevent="submitEmail"
-        class="flex flex-col sm:flex-row items-center justify-center gap-3"
-      >
-        <input
-          v-model="email"
-          type="email"
-          placeholder="Your email address"
-          required
-          class="w-full sm:w-[360px] px-5 py-3 rounded-lg bg-white/10 text-white placeholder-gray-400 border border-white/20 focus:outline-none focus:ring-2 focus:ring-white/30"
-        />
+        <!-- Email Input -->
+        <div class="flex gap-2 mb-8">
+          <v-text-field
+            v-model="email"
+            placeholder="you@company.com"
+            variant="outlined"
+            hide-details
+            class="flex-1"
+          />
 
-        <button
-          type="submit"
-          class="px-6 py-3 rounded-lg bg-white text-black font-medium hover:bg-gray-200 transition"
+          <!-- <v-btn
+            class="bg-[#643568] custom-btn text-white font-semibold px-6 rounded-lg"
+            height="52"
+            @click="joinWaitlist"
+          >
+            Join
+          </v-btn> -->
+        </div>
+
+        <!-- Early Access Benefits -->
+        <div class="space-y-5">
+          <div class="flex gap-3">
+            <span class="text-purple-600 text-xl">⚡</span>
+            <span class="font-medium">First access at launch</span>
+          </div>
+
+          <div class="flex gap-3">
+            <span class="text-purple-600 text-xl">🚀</span>
+            <span class="font-medium">Priority onboarding</span>
+          </div>
+
+          <div class="flex gap-3">
+            <span class="text-purple-600 text-xl">💸</span>
+            <span class="font-medium">37% early-access discount</span>
+          </div>
+
+          <div class="flex gap-3">
+            <span class="text-purple-600 text-xl">📩</span>
+            <span class="font-medium">
+              Free practical marketing emails to generate and nurture leads
+            </span>
+          </div>
+        </div>
+
+        <!-- Primary CTA Button -->
+        <v-btn
+          block
+          class="bg-purple-600 text-white font-semibold mt-8 rounded-xl"
+          height="52"
+          @click="joinWaitlist"
         >
-          Get Notified
-        </button>
-      </form>
+          Join the Waitlist
+        </v-btn>
+      </div>
     </div>
-
-    <!-- Bottom Glow -->
-    <div
-      class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-blue-500/20 blur-3xl rounded-full"
-    ></div>
-  </div>
+  </v-container>
 </template>
 
-<script setup>
-import { ref } from "vue";
+<script setup lang="ts">
+import { ref } from 'vue'
 
-const email = ref("");
+const email = ref('')
 
-const submitEmail = () => {
-  if (!email.value) return;
-
-  // TODO: Replace with API call
-  console.log("Waitlist email:", email.value);
-
-  alert("You're on the waitlist!");
-  email.value = "";
-};
-
-// Random star placement for background effect
-const randomStarStyle = () => {
-  return {
-    top: Math.random() * 100 + "%",
-    left: Math.random() * 100 + "%",
-    opacity: Math.random(),
-  };
-};
+const joinWaitlist = () => {
+  console.log('Waitlist email:', email.value)
+}
 </script>
 
-<style>
-/* Custom radial gradient for Tailwind */
-.bg-gradient-radial {
-  background: radial-gradient(
-    ellipse at center,
-    rgba(59, 130, 246, 0.15) 0%,
-    rgba(0, 0, 0, 0.9) 50%,
-    #000 100%
-  );
+<style scoped>
+.v-btn {
+  background-color: #63376a;
+}
+.custom-btn {
+  background-color: #63376a;
 }
 </style>
