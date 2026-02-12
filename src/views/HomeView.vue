@@ -1,20 +1,16 @@
 <template>
-  
-
   <v-container
     fluid
     class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-indigo-50 via-indigo-50 to-blue-50"
   >
     <!-- Logo (Top Left Inside Container) -->
-<div class="absolute top-6 left-6 z-20 flex items-center">
-  <img
-    src="../assets/wealthoceans-removebg-preview.png"
-    alt="Wealth Oceans"
-    class="h-14 md:h-16 w-auto"
-  />
-</div>
-
-     
+    <div class="absolute top-6 left-6 z-20 flex items-center">
+      <img
+        src="../assets/wealthoceans-removebg-preview.png"
+        alt="Wealth Oceans"
+        class="h-14 md:h-16 w-auto"
+      />
+    </div>
 
     <div class="w-full max-w-7xl px-6 py-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
       <!-- LEFT COLUMN: Core Messaging -->
@@ -58,10 +54,24 @@
             We call it the Intelligent Conversion Layer.
           </p>
 
-          <ul class="space-y-2 text-gray-700">
-            <li>✅ No missed follow-ups</li>
-            <li>✅ No poor conversions</li>
-            <li>✅ No wasted ad spend</li>
+          <ul class="space-y-3 text-gray-700">
+            <li class="flex items-center gap-3">
+              <i class="fa-solid fa-circle-check text-purple-600"></i>
+
+              <span>No missed follow-ups</span>
+            </li>
+
+            <li class="flex items-center gap-3">
+              <i class="fa-solid fa-circle-check text-purple-600"></i>
+
+              <span>No poor conversions</span>
+            </li>
+
+            <li class="flex items-center gap-3">
+              <i class="fa-solid fa-circle-check text-purple-600"></i>
+
+              <span>No wasted ad spend</span>
+            </li>
           </ul>
         </div>
 
