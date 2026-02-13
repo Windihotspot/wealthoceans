@@ -13,7 +13,7 @@
     </div>
 
     <div class="w-full max-w-7xl px-6 py-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-      <!-- LEFT COLUMN: Core Messaging -->
+      
       <!-- LEFT COLUMN: Core Messaging (Enhanced) -->
       <div class="relative">
         <!-- Accent badge -->
@@ -132,7 +132,7 @@
 
         <!-- success message -->
         <v-alert v-if="success" type="success" variant="tonal" class="mt-6">
-          🎉 You're on the waitlist! Check your inbox soon.
+          🎉 You're on the waitlist! Check your email.
         </v-alert>
 
         <!-- error message -->
@@ -185,19 +185,22 @@ const joinWaitlist = async () => {
   errorMessage.value = ''
   success.value = false
 
+  // validate Vuetify form
   const valid = await formRef.value.validate()
   if (!valid) return
 
   loading.value = true
+
   const payload = {
-      org_id: ORG_ID,
-      p_first_name: firstName.value,
-      p_email: email.value
-    }
-    console.log("join waitlist payload:", payload)
+    p_first_name: firstName.value,
+    p_email: email.value,
+    p_source: 'landing_page' // optional, track source
+  }
+  console.log('join waitlist payload:', payload)
+
   try {
     const { data, error } = await supabase.rpc('add_waitlist_lead', payload)
-
+    console.log("add waitlist data:", data)
     if (error) throw error
 
     if (data.status === 'exists') {
@@ -205,15 +208,17 @@ const joinWaitlist = async () => {
       return
     }
 
+    // success
     success.value = true
     fireConfetti()
 
+    // clear fields
     firstName.value = ''
     email.value = ''
 
   } catch (err) {
     errorMessage.value = 'Something went wrong. Please try again.'
-    console.error(err)
+    console.log(err)
   } finally {
     loading.value = false
   }
