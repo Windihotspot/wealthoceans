@@ -86,8 +86,20 @@
       <div class="bg-white/90 backdrop-blur-xl rounded-3xl p-10 shadow-xl border border-white/40">
         <h2 class="text-2xl font-bold mb-4">Join the waitlist</h2>
 
-        <p class="text-sm text-gray-600 mb-6">Enter your email to get early access.</p>
+        <p class="text-sm text-gray-600 mb-6">What is your name?.</p>
 
+        <!-- First name -->
+        <div class="flex gap-2 mb-8">
+          <v-text-field
+            v-model="firstName"
+            placeholder="Enter your first name"
+            variant="outlined"
+            hide-details
+            class="flex-1"
+          />
+        </div>
+
+         <p class="text-sm text-gray-600 mb-6">Enter your email to get early access.</p>
         <!-- Email Input -->
         <div class="flex gap-2 mb-8">
           <v-text-field
@@ -97,14 +109,6 @@
             hide-details
             class="flex-1"
           />
-
-          <!-- <v-btn
-            class="bg-[#643568] custom-btn text-white font-semibold px-6 rounded-lg"
-            height="52"
-            @click="joinWaitlist"
-          >
-            Join
-          </v-btn> -->
         </div>
 
         <!-- Early Access Benefits -->
@@ -150,6 +154,7 @@
 import { ref } from 'vue'
 
 const email = ref('')
+const firstName = ref('')
 
 const joinWaitlist = () => {
   console.log('Waitlist email:', email.value)
