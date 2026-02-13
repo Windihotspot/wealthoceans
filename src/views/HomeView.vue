@@ -83,68 +83,62 @@
       </div>
 
       <!-- RIGHT COLUMN: Waitlist Card -->
+      <!-- RIGHT COLUMN: Waitlist Card -->
       <div class="bg-white/90 backdrop-blur-xl rounded-3xl p-10 shadow-xl border border-white/40">
-        <h2 class="text-2xl font-bold mb-4">Join the waitlist</h2>
+        <h2 class="text-2xl font-bold mb-6">Join the waitlist</h2>
 
-        <p class="text-sm text-gray-600 mb-6">What is your name?.</p>
-
-        <!-- First name -->
-        <div class="flex gap-2 mb-8">
+        <v-form ref="formRef" v-model="isValid" @submit.prevent="joinWaitlist">
+          <!-- First Name -->
           <v-text-field
             v-model="firstName"
-            placeholder="Enter your first name"
+            label="First name"
             variant="outlined"
-            hide-details
-            class="flex-1"
+            :rules="nameRules"
+            required
+            class="mb-4"
           />
-        </div>
 
-         <p class="text-sm text-gray-600 mb-6">Enter your email to get early access.</p>
-        <!-- Email Input -->
-        <div class="flex gap-2 mb-8">
+          <!-- Email -->
           <v-text-field
             v-model="email"
-            placeholder="you@company.com"
+            label="Email address"
             variant="outlined"
-            hide-details
-            class="flex-1"
+            :rules="emailRules"
+            required
+            class="mb-6"
           />
-        </div>
 
-        <!-- Early Access Benefits -->
-        <div class="space-y-5">
-          <div class="flex gap-3">
-            <span class="text-purple-600 text-xl">⚡</span>
-            <span class="font-medium">First access at launch</span>
+          <!-- Benefits -->
+          <div class="space-y-4 mb-6">
+            <div class="flex gap-3"><span>⚡</span><span>First access at launch</span></div>
+            <div class="flex gap-3"><span>🚀</span><span>Priority onboarding</span></div>
+            <div class="flex gap-3"><span>💸</span><span>37% early-access discount</span></div>
+            <div class="flex gap-3">
+              <span>📩</span><span>Free marketing emails & insights</span>
+            </div>
           </div>
 
-          <div class="flex gap-3">
-            <span class="text-purple-600 text-xl">🚀</span>
-            <span class="font-medium">Priority onboarding</span>
-          </div>
+          <!-- Submit -->
+          <v-btn
+            block
+            type="submit"
+            :loading="loading"
+            class="bg-purple-600 text-white font-semibold rounded-xl"
+            height="52"
+          >
+            Join the Waitlist
+          </v-btn>
+        </v-form>
 
-          <div class="flex gap-3">
-            <span class="text-purple-600 text-xl">💸</span>
-            <span class="font-medium">37% early-access discount</span>
-          </div>
+        <!-- success message -->
+        <v-alert v-if="success" type="success" variant="tonal" class="mt-6">
+          🎉 You're on the waitlist! Check your inbox soon.
+        </v-alert>
 
-          <div class="flex gap-3">
-            <span class="text-purple-600 text-xl">📩</span>
-            <span class="font-medium">
-              Free practical marketing emails to generate and nurture leads
-            </span>
-          </div>
-        </div>
-
-        <!-- Primary CTA Button -->
-        <v-btn
-          block
-          class="bg-purple-600 text-white font-semibold mt-8 rounded-xl"
-          height="52"
-          @click="joinWaitlist"
-        >
-          Join the Waitlist
-        </v-btn>
+        <!-- error message -->
+        <v-alert v-if="errorMessage" type="error" variant="tonal" class="mt-6">
+          {{ errorMessage }}
+        </v-alert>
       </div>
     </div>
   </v-container>
@@ -152,14 +146,80 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import confetti from 'canvas-confetti'
+import { supabase } from '@/services/supabase'
 
-const email = ref('')
 const firstName = ref('')
+const email = ref('')
 
-const joinWaitlist = () => {
-  console.log('Waitlist email:', email.value)
+const formRef = ref()
+const isValid = ref(false)
+const loading = ref(false)
+const success = ref(false)
+const errorMessage = ref('')
+
+// replace with your org UUID
+const ORG_ID = 'YOUR-ORG-ID'
+
+// ✅ validation rules
+const nameRules = [
+  (v: string) => !!v || 'Your name is required',
+  (v: string) => v.length >= 2 || 'Name must be at least 2 characters'
+]
+
+const emailRules = [
+  (v: string) => !!v || 'Email is required',
+  (v: string) => /.+@.+\..+/.test(v) || 'Enter a valid email'
+]
+
+// 🎉 confetti celebration
+const fireConfetti = () => {
+  confetti({
+    particleCount: 120,
+    spread: 70,
+    origin: { y: 0.6 }
+  })
+}
+
+const joinWaitlist = async () => {
+  errorMessage.value = ''
+  success.value = false
+
+  const valid = await formRef.value.validate()
+  if (!valid) return
+
+  loading.value = true
+  const payload = {
+      org_id: ORG_ID,
+      p_first_name: firstName.value,
+      p_email: email.value
+    }
+    console.log("join waitlist payload:", payload)
+  try {
+    const { data, error } = await supabase.rpc('add_waitlist_lead', payload)
+
+    if (error) throw error
+
+    if (data.status === 'exists') {
+      errorMessage.value = 'You are already on the waitlist.'
+      return
+    }
+
+    success.value = true
+    fireConfetti()
+
+    firstName.value = ''
+    email.value = ''
+
+  } catch (err) {
+    errorMessage.value = 'Something went wrong. Please try again.'
+    console.error(err)
+  } finally {
+    loading.value = false
+  }
 }
 </script>
+
 
 <style scoped>
 .v-btn {
