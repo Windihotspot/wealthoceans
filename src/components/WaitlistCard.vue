@@ -3,7 +3,6 @@ import { ref, watch } from 'vue'
 import confetti from 'canvas-confetti'
 import { supabase } from '@/services/supabase'
 
-
 const showConfirmDialog = ref(false)
 const countdown = ref(15)
 let timer: any = null
@@ -73,9 +72,11 @@ const joinWaitlist = async () => {
 
     success.value = true
     fireConfetti()
-showConfirmDialog.value = true
+    showConfirmDialog.value = true
     firstName.value = ''
     email.value = ''
+
+    formRef.value.resetValidation()
   } catch (err) {
     errorMessage.value = 'Something went wrong. Please try again.'
   } finally {
@@ -89,8 +90,20 @@ showConfirmDialog.value = true
     <h2 class="text-2xl font-bold mb-6">Join the waitlist</h2>
 
     <v-form ref="formRef" v-model="isValid" @submit.prevent="joinWaitlist">
-      <v-text-field v-model="firstName" label="First name" variant="outlined" :rules="nameRules" class="mb-4" />
-      <v-text-field v-model="email" label="Email address" variant="outlined" :rules="emailRules" class="mb-6" />
+      <v-text-field
+        v-model="firstName"
+        label="First name"
+        variant="outlined"
+        :rules="nameRules"
+        class="mb-4"
+      />
+      <v-text-field
+        v-model="email"
+        label="Email address"
+        variant="outlined"
+        :rules="emailRules"
+        class="mb-6"
+      />
 
       <div class="space-y-4 mb-6 text-sm">
         <div class="flex gap-3"><span>⚡</span><span>First access at launch</span></div>
@@ -99,56 +112,67 @@ showConfirmDialog.value = true
         <div class="flex gap-3"><span>📩</span><span>Free marketing emails & insights</span></div>
       </div>
 
-      <v-btn block type="submit" :loading="loading" class="bg-purple-600 text-white font-semibold rounded-xl" height="52">
+      <v-btn
+        block
+        type="submit"
+        :loading="loading"
+        class="bg-purple-600 text-white font-semibold rounded-xl"
+        height="52"
+      >
         Join the Waitlist
       </v-btn>
     </v-form>
 
     <v-alert v-if="success" type="success" variant="tonal" class="mt-6">
-      🎉 You're on the waitlist! Check your email.
+      You're on the waitlist! Check your email.
     </v-alert>
 
     <v-dialog v-model="showConfirmDialog" max-width="520" persistent>
-  <v-card class="rounded-2xl pa-6 text-center">
+      <v-card class="rounded-2xl pa-6 text-center">
+        <div class="text-3xl mb-2">🎉</div>
 
-    <div class="text-3xl mb-2">🎉</div>
+        <h3 class="text-xl font-bold mb-3">You’re In — One Final Step.</h3>
 
-    <h3 class="text-xl font-bold mb-3">
-      You’re In — One Final Step.
-    </h3>
+        <p class="text-gray-700 mb-4">
+          We just sent you a confirmation email to secure your early-access spot.
+          <br /><br />
+          <strong>Confirming takes less than 9 seconds.</strong>
+        </p>
 
-    <p class="text-gray-700 mb-4">
-      We just sent you a confirmation email to secure your early-access spot.
-      <br /><br />
-      <strong>Confirming takes less than 9 seconds.</strong>
-    </p>
+        <p class="text-gray-700 mb-4">
+          Until you confirm, your <strong>37% early-access discount</strong> and priority access to
+          the Intelligent Conversion Layer are not locked in.
+        </p>
 
-    <p class="text-gray-700 mb-4">
-      Until you confirm, your <strong>37% early-access discount</strong> and
-      priority access to the Intelligent Conversion Layer are not locked in.
-    </p>
+        <p class="text-gray-700 mb-6">
+          Open your inbox now and click the confirmation link. If you don’t see it, check your spam
+          or promotions tab — we don’t want you missing your discounted access at launch.
+        </p>
 
-    <p class="text-gray-700 mb-6">
-      Open your inbox now and click the confirmation link.
-      If you don’t see it, check your spam or promotions tab — we don’t want you
-      missing your discounted access at launch.
-    </p>
-
-    <v-btn
-      block
-      size="large"
-      class="bg-purple-600 text-white font-semibold"
-      @click="showConfirmDialog = false"
-    >
-      Got it — I'll confirm now
-    </v-btn>
-
-  </v-card>
-</v-dialog>
-
+        <v-btn
+        variant="text"
+          block
+          size="large"
+          class="bg-purple-600 text-white font-semibold"
+          @click="showConfirmDialog = false"
+        >
+        Go back 
+        </v-btn>
+      </v-card>
+    </v-dialog>
 
     <v-alert v-if="errorMessage" type="error" variant="tonal" class="mt-6">
       {{ errorMessage }}
     </v-alert>
   </div>
 </template>
+
+<style scoped>
+.v-btn {
+    text-transform: none;
+  background-color: #63376a;
+}
+.custom-btn {
+  background-color: #63376a;
+}
+</style>
