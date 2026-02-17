@@ -141,7 +141,7 @@ const joinWaitlist = async () => {
 
         <p class="text-gray-700 mb-4">
           Until you confirm, your <strong>37% early-access discount</strong> and priority access to
-          the Intelligent Conversion Layer are not locked in.
+          the Intelligent Conversion infrastructure are not locked in.
         </p>
 
         <p class="text-gray-700 mb-6">
