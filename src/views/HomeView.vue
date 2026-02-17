@@ -20,7 +20,7 @@
         <div
           class="inline-flex items-center px-4 py-2 rounded-full bg-purple-600/10 text-purple-700 text-sm font-semibold mb-6"
         >
-          🚀 AI-Powered Lead Conversion
+          🚀 AI-Powered Lead Conversion Infrastructure
         </div>
 
         <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
@@ -32,7 +32,12 @@
           </span>
         </h1>
 
-        <p class="text-lg md:text-xl text-gray-700 mb-8">
+        <!-- Mobile only -->
+        <div class="lg:hidden mt-8">
+          <WaitlistCard />
+        </div>
+
+        <p class="text-lg md:text-xl text-gray-700 mt-4 mb-8">
           Most businesses don’t lose sales because of bad offers. They lose them because
           <span class="font-semibold text-gray-900">
             nothing happens when interest is highest.
@@ -83,64 +88,9 @@
       </div>
 
       <!-- RIGHT COLUMN: Waitlist Card -->
-      <div class="bg-white/90 backdrop-blur-xl rounded-3xl p-10 shadow-xl border border-white/40">
-        <h2 class="text-2xl font-bold mb-4">Join the waitlist</h2>
-
-        <p class="text-sm text-gray-600 mb-6">Enter your email to get early access.</p>
-
-        <!-- Email Input -->
-        <div class="flex gap-2 mb-8">
-          <v-text-field
-            v-model="email"
-            placeholder="you@company.com"
-            variant="outlined"
-            hide-details
-            class="flex-1"
-          />
-
-          <!-- <v-btn
-            class="bg-[#643568] custom-btn text-white font-semibold px-6 rounded-lg"
-            height="52"
-            @click="joinWaitlist"
-          >
-            Join
-          </v-btn> -->
-        </div>
-
-        <!-- Early Access Benefits -->
-        <div class="space-y-5">
-          <div class="flex gap-3">
-            <span class="text-purple-600 text-xl">⚡</span>
-            <span class="font-medium">First access at launch</span>
-          </div>
-
-          <div class="flex gap-3">
-            <span class="text-purple-600 text-xl">🚀</span>
-            <span class="font-medium">Priority onboarding</span>
-          </div>
-
-          <div class="flex gap-3">
-            <span class="text-purple-600 text-xl">💸</span>
-            <span class="font-medium">37% early-access discount</span>
-          </div>
-
-          <div class="flex gap-3">
-            <span class="text-purple-600 text-xl">📩</span>
-            <span class="font-medium">
-              Free practical marketing emails to generate and nurture leads
-            </span>
-          </div>
-        </div>
-
-        <!-- Primary CTA Button -->
-        <v-btn
-          block
-          class="bg-purple-600 text-white font-semibold mt-8 rounded-xl"
-          height="52"
-          @click="joinWaitlist"
-        >
-          Join the Waitlist
-        </v-btn>
+      <!-- Desktop only -->
+      <div class="hidden lg:block mt-8">
+        <WaitlistCard />
       </div>
     </div>
   </v-container>

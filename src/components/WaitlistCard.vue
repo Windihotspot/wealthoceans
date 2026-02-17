@@ -86,7 +86,7 @@ const joinWaitlist = async () => {
 </script>
 
 <template>
-  <div class="bg-white/90 backdrop-blur-xl rounded-3xl p-8 shadow-xl border border-white/40">
+  <div class="bg-white/90 backdrop-blur-xl rounded-xl p-8 shadow-xl border border-white/40">
     <h2 class="text-2xl font-bold mb-6">Join the waitlist</h2>
 
     <v-form ref="formRef" v-model="isValid" @submit.prevent="joinWaitlist">
