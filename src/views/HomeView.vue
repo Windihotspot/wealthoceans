@@ -19,7 +19,7 @@
         <div
           class="inline-flex items-center px-4 py-2 rounded-full bg-purple-600/10 text-purple-700 text-xs font-semibold mb-6"
         >
-          🚀 AI-Powered Lead Conversion Infrastructure 
+          🚀 AI-Powered Lead Conversion Infrastructure
         </div>
 
         <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
@@ -36,7 +36,7 @@
           <WaitlistCard />
         </div>
 
-        <p class="text-lg md:text-xl text-gray-700 mb-8">
+        <p class="text-lg md:text-xl text-gray-700 mt-4 mb-8">
           Most businesses don’t lose sales because of bad offers. They lose them because
           <span class="font-semibold text-gray-900">
             nothing happens when interest is highest.
@@ -90,10 +90,9 @@
 
       <!-- RIGHT COLUMN: Waitlist Card -->
       <!-- Desktop only -->
-<div class="hidden lg:block bg-white/90 backdrop-blur-xl rounded-3xl p-10 shadow-xl border border-white/40">
-  <WaitlistCard />
-</div>
-
+      <div class="hidden lg:block mt-8">
+        <WaitlistCard />
+      </div>
     </div>
   </v-container>
 </template>
