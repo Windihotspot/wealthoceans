@@ -13,13 +13,14 @@
     </div>
 
     <div class="w-full max-w-7xl px-6 py-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <!-- LEFT COLUMN: Core Messaging -->
       <!-- LEFT COLUMN: Core Messaging (Enhanced) -->
       <div class="relative">
         <!-- Accent badge -->
         <div
-          class="inline-flex items-center px-4 py-2 rounded-full bg-purple-600/10 text-purple-700 text-xs font-semibold mb-6"
+          class="inline-flex items-center px-4 py-2 rounded-full bg-purple-600/10 text-purple-700 text-sm font-semibold mb-6"
         >
-          🚀 AI-Powered Lead Conversion Infrastructure 
+          🚀 AI-Powered Lead Conversion
         </div>
 
         <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
@@ -30,11 +31,6 @@
             the Moment They Show Interest.
           </span>
         </h1>
-
-        <!-- Mobile only -->
-        <div class="lg:hidden mt-8">
-          <WaitlistCard />
-        </div>
 
         <p class="text-lg md:text-xl text-gray-700 mb-8">
           Most businesses don’t lose sales because of bad offers. They lose them because
@@ -49,9 +45,7 @@
         >
           <p class="text-gray-800 leading-relaxed mb-4">
             Wealth Oceans Technologies is launching an
-            <span class="font-semibold text-purple-700">
-              AI-powered conversion Infrastructure
-            </span>
+            <span class="font-semibold text-purple-700"> AI-powered conversion system </span>
             that captures leads, responds instantly, asks the right questions, and follows up across
             your website, ads, and social DMs — even when your team is offline.
           </p>
@@ -89,93 +83,76 @@
       </div>
 
       <!-- RIGHT COLUMN: Waitlist Card -->
-      <!-- Desktop only -->
-<div class="hidden lg:block bg-white/90 backdrop-blur-xl rounded-3xl p-10 shadow-xl border border-white/40">
-  <WaitlistCard />
-</div>
+      <div class="bg-white/90 backdrop-blur-xl rounded-3xl p-10 shadow-xl border border-white/40">
+        <h2 class="text-2xl font-bold mb-4">Join the waitlist</h2>
 
+        <p class="text-sm text-gray-600 mb-6">Enter your email to get early access.</p>
+
+        <!-- Email Input -->
+        <div class="flex gap-2 mb-8">
+          <v-text-field
+            v-model="email"
+            placeholder="you@company.com"
+            variant="outlined"
+            hide-details
+            class="flex-1"
+          />
+
+          <!-- <v-btn
+            class="bg-[#643568] custom-btn text-white font-semibold px-6 rounded-lg"
+            height="52"
+            @click="joinWaitlist"
+          >
+            Join
+          </v-btn> -->
+        </div>
+
+        <!-- Early Access Benefits -->
+        <div class="space-y-5">
+          <div class="flex gap-3">
+            <span class="text-purple-600 text-xl">⚡</span>
+            <span class="font-medium">First access at launch</span>
+          </div>
+
+          <div class="flex gap-3">
+            <span class="text-purple-600 text-xl">🚀</span>
+            <span class="font-medium">Priority onboarding</span>
+          </div>
+
+          <div class="flex gap-3">
+            <span class="text-purple-600 text-xl">💸</span>
+            <span class="font-medium">37% early-access discount</span>
+          </div>
+
+          <div class="flex gap-3">
+            <span class="text-purple-600 text-xl">📩</span>
+            <span class="font-medium">
+              Free practical marketing emails to generate and nurture leads
+            </span>
+          </div>
+        </div>
+
+        <!-- Primary CTA Button -->
+        <v-btn
+          block
+          class="bg-purple-600 text-white font-semibold mt-8 rounded-xl"
+          height="52"
+          @click="joinWaitlist"
+        >
+          Join the Waitlist
+        </v-btn>
+      </div>
     </div>
   </v-container>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import confetti from 'canvas-confetti'
-import { supabase } from '@/services/supabase'
-import WaitlistCard from '@/components/WaitlistCard.vue'
 
-const firstName = ref('')
 const email = ref('')
 
-const formRef = ref()
-const isValid = ref(false)
-const loading = ref(false)
-const success = ref(false)
-const errorMessage = ref('')
-
-// replace with your org UUID
-const ORG_ID = 'YOUR-ORG-ID'
-
-// ✅ validation rules
-const nameRules = [
-  (v: string) => !!v || 'Your name is required',
-  (v: string) => v.length >= 2 || 'Name must be at least 2 characters'
-]
-
-const emailRules = [
-  (v: string) => !!v || 'Email is required',
-  (v: string) => /.+@.+\..+/.test(v) || 'Enter a valid email'
-]
-
-// 🎉 confetti celebration
-const fireConfetti = () => {
-  confetti({
-    particleCount: 120,
-    spread: 70,
-    origin: { y: 0.6 }
-  })
-}
-
-const joinWaitlist = async () => {
-  errorMessage.value = ''
-  success.value = false
-
-  // validate Vuetify form
-  const valid = await formRef.value.validate()
-  if (!valid) return
-
-  loading.value = true
-
-  const payload = {
-    p_first_name: firstName.value,
-    p_email: email.value,
-    p_source: 'landing_page' // optional, track source
-  }
-  console.log('join waitlist payload:', payload)
-
-  try {
-    const { data, error } = await supabase.rpc('add_waitlist_lead', payload)
-    console.log('add waitlist data:', data)
-    if (error) throw error
-
-    if (data.status === 'exists') {
-      errorMessage.value = 'You are already on the waitlist.'
-      return
-    }
-
-    // success
-    success.value = true
-    fireConfetti()
-
-    // clear fields
-    firstName.value = ''
-    email.value = ''
-  } catch (err) {
-    errorMessage.value = 'Something went wrong. Please try again.'
-    console.log(err)
-  } finally {
-    loading.value = false
-  }
+const joinWaitlist = () => {
+  console.log('Waitlist email:', email.value)
 }
 </script>
 
