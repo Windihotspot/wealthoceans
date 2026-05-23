@@ -98,6 +98,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import WaitlistCard from '@/components/WaitlistCard.vue'
 
 const email = ref('')
 

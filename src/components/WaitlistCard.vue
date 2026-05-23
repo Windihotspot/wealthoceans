@@ -62,7 +62,7 @@ const joinWaitlist = async () => {
       p_email: email.value,
       p_source: 'landing_page'
     })
-
+    console.log('data response:', data)
     if (error) throw error
 
     if (data.status === 'exists') {
@@ -73,11 +73,15 @@ const joinWaitlist = async () => {
     success.value = true
     fireConfetti()
     showConfirmDialog.value = true
+    setTimeout(() => {
+      success.value = false
+    }, 3000)
     firstName.value = ''
     email.value = ''
 
     formRef.value.resetValidation()
   } catch (err) {
+    console.log('error:', err)
     errorMessage.value = 'Something went wrong. Please try again.'
   } finally {
     loading.value = false
@@ -123,9 +127,9 @@ const joinWaitlist = async () => {
       </v-btn>
     </v-form>
 
-    <v-alert v-if="success" type="success" variant="tonal" class="mt-6">
+    <!-- <v-alert v-if="success" type="success" variant="tonal" class="mt-6">
       You're on the waitlist! Check your email.
-    </v-alert>
+    </v-alert> -->
 
     <v-dialog v-model="showConfirmDialog" max-width="520" persistent>
       <v-card class="rounded-2xl pa-6 text-center">
@@ -150,13 +154,13 @@ const joinWaitlist = async () => {
         </p>
 
         <v-btn
-        variant="text"
+          variant="text"
           block
           size="large"
           class="bg-purple-600 text-white font-semibold"
           @click="showConfirmDialog = false"
         >
-        Go back 
+          Go back
         </v-btn>
       </v-card>
     </v-dialog>
@@ -169,7 +173,7 @@ const joinWaitlist = async () => {
 
 <style scoped>
 .v-btn {
-    text-transform: none;
+  text-transform: none;
   background-color: #63376a;
 }
 .custom-btn {
