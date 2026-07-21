@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import ifiokImg from '../assets/ifiok.jpeg'
+import blessingImg from '../assets/blessing.jpg'
 const capabilities = [
   {
     num: '01',
@@ -50,14 +52,14 @@ const team = [
     role: 'Lead Engineer',
     bio: 'Builds and ships LCI end to end — backend logic, AI integrations, APIs, and the interface customers actually use. If it\u2019s part of the product, he\u2019s touched the code behind it.',
     initials: 'IU',
-    image: 'https://cdn.pixabay.com/photo/2019/12/16/14/46/black-man-4699505_1280.jpg'
+    image: ifiokImg
   },
   {
     name: 'Blessing Imaji',
     role: 'Growth & Outreach Lead',
     bio: 'The first human touchpoint for most of Wealth Oceans\u2019 early customers — reaching out daily, booking calls, and keeping every lead moving instead of going cold. Fittingly, the exact problem LCI was built to solve at scale.',
     initials: 'BI',
-    image: 'https://cdn.pixabay.com/photo/2019/12/16/14/46/black-man-4699505_1280.jpg'
+    image: blessingImg
   }
 ]
 
