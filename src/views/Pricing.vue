@@ -134,27 +134,33 @@ const faqs = [
     <!-- NAVBAR -->
     <header class="sticky top-0 z-50 border-b border-white/5 bg-[#0B0A14]/80 backdrop-blur-xl">
       <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
-        <a href="#" class="flex items-center gap-2">
+        <router-link to="/" class="flex items-center gap-2">
           <img src="../assets/wealthoceans-removebg-preview.png" class="w-40" alt="" />
-        </a>
+        </router-link>
 
         <div class="hidden items-center gap-8 text-sm font-medium text-white/70 md:flex">
-          <a href="#product" class="transition hover:text-white">Product</a>
-          <a href="#how-it-works" class="transition hover:text-white">How It Works</a>
-          <a href="#pricing" class="transition hover:text-white">Pricing</a>
-          <a href="#faq" class="transition hover:text-white">FAQ</a>
+          <router-link to="/about" class="transition hover:text-white">About us</router-link>
+          <router-link to="/product" class="transition hover:text-white">Product</router-link>
+          <router-link to="/how-it-works" class="transition hover:text-white"
+            >How It Works</router-link
+          >
+          <router-link to="/pricing" class="transition hover:text-white">Pricing</router-link>
+          <router-link to="/pricing" class="transition hover:text-white">Training</router-link>
+          <router-link to="/faq" class="transition hover:text-white">FAQ</router-link>
         </div>
 
         <div class="hidden items-center gap-3 md:flex">
-          <a href="#" class="text-sm font-medium text-white/70 transition hover:text-white"
-            >Book a Demo</a
+          <router-link
+            to="/pricing"
+            class="text-sm font-medium text-white/70 transition hover:text-white"
+            >Book a Demo</router-link
           >
-          <a
-            href="#pricing"
+          <router-link
+            to="/pricing"
             class="rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500 px-5 py-2.5 text-sm font-semibold shadow-lg shadow-purple-500/30 transition hover:shadow-purple-500/50"
           >
             Get Started Free
-          </a>
+          </router-link>
         </div>
 
         <button
@@ -196,19 +202,31 @@ const faqs = [
           class="border-t border-white/5 bg-[#0B0A14] px-5 pb-6 pt-4 md:hidden"
         >
           <div class="flex flex-col gap-4 text-sm font-medium text-white/70">
-            <a href="#product" @click="mobileMenuOpen = false" class="hover:text-white">Product</a>
-            <a href="#how-it-works" @click="mobileMenuOpen = false" class="hover:text-white"
-              >How It Works</a
+            <router-link to="/company" @click="mobileMenuOpen = false" class="hover:text-white"
+              >About us</router-link
             >
-            <a href="#pricing" @click="mobileMenuOpen = false" class="hover:text-white">Pricing</a>
-            <a href="#faq" @click="mobileMenuOpen = false" class="hover:text-white">FAQ</a>
-            <a
-              href="#pricing"
+            <router-link to="/product" @click="mobileMenuOpen = false" class="hover:text-white"
+              >Product</router-link
+            >
+            <router-link to="/how-it-works" @click="mobileMenuOpen = false" class="hover:text-white"
+              >How It Works</router-link
+            >
+            <router-link to="/pricing" @click="mobileMenuOpen = false" class="hover:text-white"
+              >Pricing</router-link
+            >
+            <router-link to="/pricing" @click="mobileMenuOpen = false" class="hover:text-white"
+              >Training</router-link
+            >
+            <router-link to="/faq" @click="mobileMenuOpen = false" class="hover:text-white"
+              >FAQ</router-link
+            >
+            <router-link
+              to="/pricing"
               @click="mobileMenuOpen = false"
               class="mt-2 rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500 px-5 py-3 text-center font-semibold"
             >
               Get Started Free
-            </a>
+            </router-link>
           </div>
         </div>
       </transition>
@@ -312,9 +330,14 @@ const faqs = [
           © {{ new Date().getFullYear() }} Wealth Oceans Technologies. All rights reserved.
         </p>
         <div class="flex gap-5 text-xs text-white/50">
-          <a href="#product" class="hover:text-white">Product</a>
-          <a href="#pricing" class="hover:text-white">Pricing</a>
-          <a href="#faq" class="hover:text-white">FAQ</a>
+          <router-link to="/about" class="transition hover:text-white">About us</router-link>
+          <router-link to="/product" class="transition hover:text-white">Product</router-link>
+          <router-link to="/how-it-works" class="transition hover:text-white"
+            >How It Works</router-link
+          >
+          <router-link to="/pricing" class="transition hover:text-white">Pricing</router-link>
+          <router-link to="/faq" class="transition hover:text-white">FAQ</router-link>
+          <router-link to="/pricing" class="transition hover:text-white">Training</router-link>
         </div>
       </div>
     </footer>

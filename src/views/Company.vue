@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import ifiokImg from '../assets/ifiok.jpeg'
 import blessingImg from '../assets/blessing.jpg'
+import joeImg from '../assets/joe.png'
+import demmyImg from '../assets/demmy.png'
 const capabilities = [
   {
     num: '01',
@@ -38,14 +40,14 @@ const team = [
     bio: 'Owns every decision — from what gets built, to how it\u2019s positioned, to how it\u2019s sold. Shaped LCI from concept to first customers, and still owns the product\u2019s AI behavior and revenue strategy today.',
     initials: 'JI',
     // Point this at your real photo, e.g. imported asset or '/team/joseph.jpg'
-    image: 'https://cdn.pixabay.com/photo/2019/12/16/14/46/black-man-4699505_1280.jpg'
+    image: joeImg
   },
   {
     name: 'Demilade Oyekunbi',
     role: 'Operations & Quality Lead',
     bio: 'Tests LCI daily, catches what\u2019s broken before customers do, and keeps the entire team\u2019s execution — tasks, timelines, priorities — running on schedule.',
     initials: 'DO',
-    image: 'https://cdn.pixabay.com/photo/2019/12/16/14/46/black-man-4699505_1280.jpg'
+    image: demmyImg
   },
   {
     name: 'Ifiok Usanga',
@@ -104,6 +106,107 @@ const paths = [
         class="absolute top-1/3 -right-40 h-[500px] w-[500px] rounded-full bg-fuchsia-600/15 blur-[140px]"
       ></div>
     </div>
+
+    <!-- NAVBAR -->
+    <header class="sticky top-0 z-50 border-b border-white/5 bg-[#0B0A14]/80 backdrop-blur-xl">
+      <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
+        <router-link to="/" class="flex items-center gap-2">
+          <img src="../assets/wealthoceans-removebg-preview.png" class="w-40" alt="" />
+        </router-link>
+
+        <div class="hidden items-center gap-8 text-sm font-medium text-white/70 md:flex">
+          <router-link to="/about" class="transition hover:text-white">About us</router-link>
+          <router-link to="/product" class="transition hover:text-white">Product</router-link>
+          <router-link to="/how-it-works" class="transition hover:text-white"
+            >How It Works</router-link
+          >
+          <router-link to="/pricing" class="transition hover:text-white">Pricing</router-link>
+          <router-link to="/pricing" class="transition hover:text-white">Training</router-link>
+          <router-link to="/faq" class="transition hover:text-white">FAQ</router-link>
+        </div>
+
+        <div class="hidden items-center gap-3 md:flex">
+          <router-link
+            to="/pricing"
+            class="text-sm font-medium text-white/70 transition hover:text-white"
+            >Book a Demo</router-link
+          >
+          <router-link
+            to="/pricing"
+            class="rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500 px-5 py-2.5 text-sm font-semibold shadow-lg shadow-purple-500/30 transition hover:shadow-purple-500/50"
+          >
+            Get Started Free
+          </router-link>
+        </div>
+
+        <button
+          class="md:hidden"
+          @click="mobileMenuOpen = !mobileMenuOpen"
+          aria-label="Toggle menu"
+        >
+          <svg
+            v-if="!mobileMenuOpen"
+            class="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg
+            v-else
+            class="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </nav>
+
+      <!-- Mobile menu -->
+      <transition
+        enter-active-class="transition ease-out duration-200"
+        enter-from-class="opacity-0 -translate-y-2"
+        enter-to-class="opacity-100 translate-y-0"
+      >
+        <div
+          v-if="mobileMenuOpen"
+          class="border-t border-white/5 bg-[#0B0A14] px-5 pb-6 pt-4 md:hidden"
+        >
+          <div class="flex flex-col gap-4 text-sm font-medium text-white/70">
+            <router-link to="/company" @click="mobileMenuOpen = false" class="hover:text-white"
+              >About us</router-link
+            >
+            <router-link to="/product" @click="mobileMenuOpen = false" class="hover:text-white"
+              >Product</router-link
+            >
+            <router-link to="/how-it-works" @click="mobileMenuOpen = false" class="hover:text-white"
+              >How It Works</router-link
+            >
+            <router-link to="/pricing" @click="mobileMenuOpen = false" class="hover:text-white"
+              >Pricing</router-link
+            >
+            <router-link to="/pricing" @click="mobileMenuOpen = false" class="hover:text-white"
+              >Training</router-link
+            >
+            <router-link to="/faq" @click="mobileMenuOpen = false" class="hover:text-white"
+              >FAQ</router-link
+            >
+            <router-link
+              to="/pricing"
+              @click="mobileMenuOpen = false"
+              class="mt-2 rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500 px-5 py-3 text-center font-semibold"
+            >
+              Get Started Free
+            </router-link>
+          </div>
+        </div>
+      </transition>
+    </header>
 
     <!-- HERO -->
     <section
