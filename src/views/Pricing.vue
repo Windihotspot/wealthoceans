@@ -145,7 +145,7 @@ const faqs = [
             >How It Works</router-link
           >
           <router-link to="/pricing" class="transition hover:text-white">Pricing</router-link>
-          <router-link to="/pricing" class="transition hover:text-white">Training</router-link>
+          <router-link to="/training" class="transition hover:text-white">Training</router-link>
           <router-link to="/faq" class="transition hover:text-white">FAQ</router-link>
         </div>
 
@@ -214,7 +214,7 @@ const faqs = [
             <router-link to="/pricing" @click="mobileMenuOpen = false" class="hover:text-white"
               >Pricing</router-link
             >
-            <router-link to="/pricing" @click="mobileMenuOpen = false" class="hover:text-white"
+            <router-link to="/training" @click="mobileMenuOpen = false" class="hover:text-white"
               >Training</router-link
             >
             <router-link to="/faq" @click="mobileMenuOpen = false" class="hover:text-white"

@@ -6,6 +6,7 @@ import Product from '@/views/Product.vue'
 import Faq from '@/views/Faq.vue'
 import HowitWorks from '@/views/HowitWorks.vue'
 import Pricing from '@/views/Pricing.vue'
+import Training from '@/views/Training.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,6 +45,11 @@ const router = createRouter({
       path: '/how-it-works',
       name: 'how-it-works',
       component: HowitWorks
+    },
+    {
+      path: '/training',
+      name: 'training',
+      component: Training
     }
   ]
 })
