@@ -198,9 +198,9 @@ const faqs = [
     </header>
 
     <!-- HERO -->
-    <section class="relative isolate flex min-h-[80vh] items-center justify-center overflow-hidden px-5 py-24 text-center sm:px-8 sm:py-32">
+    <section class="relative isolate flex min-h-screen items-center justify-center overflow-hidden px-12 text-center sm:px-8 sm:py-12">
       <img
-        src="../assets/wealth.png"
+        src="../assets/Gemini_Generated_Image_mstajimstajimsta.png"
         alt=""
         class="absolute inset-0 -z-20 h-full w-full object-cover object-center"
       />
@@ -220,7 +220,7 @@ const faqs = [
           <span class="font-bold text-white">The Conversion Code</span> is a 6-week system that teaches your entire team the full sequence—from the first stranger who sees your ad to the moment they pay—installed live on your real campaigns, guaranteed.
         </p>
 
-        <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <div class="mt-4 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a
             href="#pricing"
             class="w-full rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500 px-8 py-4 text-sm font-semibold text-white shadow-xl shadow-purple-500/30 transition hover:shadow-purple-500/50 sm:w-auto"
