@@ -3,6 +3,8 @@ import ifiokImg from '../assets/ifiok.jpeg'
 import blessingImg from '../assets/blessing.jpg'
 import joeImg from '../assets/joe.png'
 import demmyImg from '../assets/demmy.png'
+import { ref } from 'vue'
+const mobileMenuOpen = ref(true)
 const capabilities = [
   {
     num: '01',
@@ -109,7 +111,7 @@ const paths = [
 
     <!-- NAVBAR -->
     <header class="sticky top-0 z-50 border-b border-white/5 bg-[#0B0A14]/80 backdrop-blur-xl">
-      <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
+      <nav class="mx-auto flex w-full items-center justify-between px-5 py-4 ">
         <router-link to="/" class="flex items-center gap-2">
           <img src="../assets/wealthoceans-removebg-preview.png" class="w-40" alt="" />
         </router-link>
@@ -178,7 +180,7 @@ const paths = [
           class="border-t border-white/5 bg-[#0B0A14] px-5 pb-6 pt-4 md:hidden"
         >
           <div class="flex flex-col gap-4 text-sm font-medium text-white/70">
-            <router-link to="/company" @click="mobileMenuOpen = false" class="hover:text-white"
+            <router-link to="/about" @click="mobileMenuOpen = false" class="hover:text-white"
               >About us</router-link
             >
             <router-link to="/product" @click="mobileMenuOpen = false" class="hover:text-white"
@@ -196,13 +198,7 @@ const paths = [
             <router-link to="/faq" @click="mobileMenuOpen = false" class="hover:text-white"
               >FAQ</router-link
             >
-            <router-link
-              to="/pricing"
-              @click="mobileMenuOpen = false"
-              class="mt-2 rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500 px-5 py-3 text-center font-semibold"
-            >
-              Get Started Free
-            </router-link>
+            
           </div>
         </div>
       </transition>
