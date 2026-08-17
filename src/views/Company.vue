@@ -47,7 +47,7 @@ const team = [
   {
     name: 'Demilade Oyekunbi',
     role: 'Operations & Quality Lead',
-    bio: 'Tests LCI daily, catches what\u2019s broken before customers do, and keeps the entire team\u2019s execution — tasks, timelines, priorities — running on schedule.',
+    bio: 'Supports delivery coordination, quality assurance, implementation consistency, and reporting.',
     initials: 'DO',
     image: demmyImg
   },
@@ -61,7 +61,7 @@ const team = [
   {
     name: 'Blessing Imaji',
     role: 'Growth & Outreach Lead',
-    bio: 'The first human touchpoint for most of Wealth Oceans\u2019 early customers — reaching out daily, booking calls, and keeping every lead moving instead of going cold. Fittingly, the exact problem LCI was built to solve at scale.',
+    bio: 'Supports client coordination, communication, and engagement activities throughout delivery.',
     initials: 'BI',
     image: blessingImg
   }
@@ -95,6 +95,7 @@ const paths = [
     href: '#'
   }
 ]
+import heroBg from '../assets/about-us.jpg'
 </script>
 
 <template>
@@ -205,35 +206,52 @@ const paths = [
     </header>
 
     <!-- HERO -->
-    <section
-      class="relative mx-auto max-w-4xl px-5 pt-20 pb-16 text-center sm:px-8 sm:pt-28 sm:pb-20"
+   <!-- HERO -->
+<section
+  class="relative overflow-hidden bg-cover bg-center bg-no-repeat"
+  :style="{ backgroundImage: `url(${heroBg})` }"
+>
+  <!-- Dark overlay -->
+  <div class="absolute inset-0 bg-[#0B0A14]/75"></div>
+
+  <!-- Purple glow -->
+  <div
+    class="absolute -top-40 left-1/2 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-purple-700/20 blur-[140px]"
+  ></div>
+
+  <!-- Hero content -->
+  <div
+    class="relative mx-auto max-w-4xl px-5 py-24 text-center sm:px-8 sm:py-32"
+  >
+    <div
+      class="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-medium text-white/70 backdrop-blur-sm"
     >
-      <div
-        class="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-medium text-white/70"
+      <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+      Wealth Oceans Technologies
+    </div>
+
+    <h1 class="text-4xl font-bold leading-[1.1] tracking-tight sm:text-6xl">
+      Who We Are &
+      <span
+        class="bg-gradient-to-r from-purple-400 via-fuchsia-400 to-purple-400 bg-clip-text text-transparent"
       >
-        <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
-        Wealth Oceans Technologies
-      </div>
+        What We Do
+      </span>
+    </h1>
 
-      <h1 class="text-4xl font-bold leading-[1.1] tracking-tight sm:text-6xl">
-        Who We Are &
-        <span
-          class="bg-gradient-to-r from-purple-400 via-fuchsia-400 to-purple-400 bg-clip-text text-transparent"
-        >
-          What We Do
-        </span>
-      </h1>
+    <p class="mx-auto mt-6 max-w-2xl text-base text-white/70 sm:text-lg">
+      Businesses today have more ways to reach people than ever — and less
+      clarity on how to convert them. More platforms, more content, more
+      noise. Underneath it all, the same leak: attention that never becomes
+      revenue.
+    </p>
 
-      <p class="mx-auto mt-6 max-w-2xl text-base text-white/60 sm:text-lg">
-        Businesses today have more ways to reach people than ever — and less clarity on how to
-        convert them. More platforms, more content, more noise. Underneath it all, the same leak:
-        attention that never becomes revenue.
-      </p>
-      <p class="mx-auto mt-4 max-w-2xl text-base font-medium text-white/85 sm:text-lg">
-        Wealth Oceans Technologies closes that leak — through the software we build, the strategy we
-        teach, and the teams we train.
-      </p>
-    </section>
+    <p class="mx-auto mt-4 max-w-2xl text-base font-medium text-white/90 sm:text-lg">
+      Wealth Oceans Technologies closes that leak — through the software we
+      build, the strategy we teach, and the teams we train.
+    </p>
+  </div>
+</section>
 
     <!-- WHAT WE DO -->
     <section class="mx-auto max-w-6xl px-5 py-16 sm:px-8">

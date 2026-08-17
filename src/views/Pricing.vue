@@ -57,48 +57,39 @@ const channels = ['Website', 'WhatsApp', 'Instagram', 'Facebook', 'LinkedIn', 'T
 
 const plans = [
   {
-    name: 'Starter',
-    price: '$97',
-    tagline: 'For businesses just getting their first AI closer live.',
-    features: [
-      '2 channels (Website + WhatsApp, or Instagram + WhatsApp)',
-      'Up to 500 active conversations/month',
-      'Lead qualification & scoring',
-      'Basic offer generator',
-      'Standard dashboard',
-      'Email support'
-    ],
-    best: 'Solo coaches, consultants, and creators testing their first automated close.',
+    name: 'Tier 1',
+    members: '1–5 members',
+    phase1: '₦350,000',
+    phase2: '₦1,500,000',
+    phase3: '₦600,000',
+    total: '₦2,450,000',
     highlight: false
   },
   {
-    name: 'Growth',
-    price: '$297',
-    tagline: 'For businesses ready to stop losing leads across multiple platforms.',
-    features: [
-      'Up to 3 channels (pick any 3)',
-      'Up to 2,500 active conversations/month',
-      'Full AI Sales Agent (objections, closing, payment links)',
-      'Omnichannel identity tracking',
-      'Offer & funnel generator',
-      'Priority chat + email support'
-    ],
-    best: 'Growing coaches, SaaS founders, and info-product businesses running real ad spend.',
+    name: 'Tier 2',
+    members: '6–15 members',
+    phase1: '₦450,000',
+    phase2: '₦1,900,000',
+    phase3: '₦750,000',
+    total: '₦3,100,000',
     highlight: true
   },
   {
-    name: 'Premium',
-    price: '$797',
-    tagline: 'For businesses that want the full closer, not just the chat.',
-    features: [
-      'All channels, fully connected',
-      'Up to 10,000 active conversations/month',
-      'Full AI Sales Agent + High-Ticket Closing System',
-      'AI Email Marketing & Nurture (ActiveCampaign / Systeme.io / Mailchimp)',
-      'Advanced analytics & drop-off points',
-      'Dedicated onboarding + priority support'
-    ],
-    best: 'Established coaches, agencies, and real estate teams with high-ticket offers.',
+    name: 'Tier 3',
+    members: '16–30 members',
+    phase1: '₦550,000',
+    phase2: '₦2,300,000',
+    phase3: '₦900,000',
+    total: '₦3,750,000',
+    highlight: false
+  },
+  {
+    name: 'Tier 4',
+    members: '31–40 members',
+    phase1: '₦600,000',
+    phase2: '₦2,500,000',
+    phase3: '₦1,000,000',
+    total: '₦4,100,000',
     highlight: false
   }
 ]
@@ -227,96 +218,158 @@ const faqs = [
     </header>
 
     <!-- PRICING -->
-    <section id="pricing" class="mx-auto max-w-6xl px-5 py-16 sm:px-8">
-      <div class="text-center">
-        <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Simple, Honest Pricing</h2>
-        <p class="mx-auto mt-3 max-w-xl text-white/60">
-          No long-term contract required. 14-day pilot period so you can see real conversations
-          close before you commit.
+    <!-- PRICING -->
+<section id="pricing" class="mx-auto max-w-7xl px-5 py-16 sm:px-8">
+  <div class="text-center">
+    <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">
+      Pricing
+    </h2>
+
+    <p class="mx-auto mt-3 max-w-2xl text-white/60">
+      Flexible team-based implementation pricing designed to help your
+      organization deploy LCI across your sales team.
+    </p>
+  </div>
+
+  <!-- Pricing Cards -->
+  <div class="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+    <div
+      v-for="plan in plans"
+      :key="plan.name"
+      class="relative flex flex-col rounded-2xl border p-6 transition-all duration-300 hover:-translate-y-1"
+      :class="
+        plan.highlight
+          ? 'border-purple-400/50 bg-gradient-to-b from-purple-500/15 to-fuchsia-500/5 shadow-2xl shadow-purple-500/10'
+          : 'border-white/10 bg-white/[0.03] hover:border-white/20 hover:bg-white/[0.05]'
+      "
+    >
+      <!-- Most Popular -->
+      <span
+        v-if="plan.highlight"
+        class="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500 px-4 py-1 text-xs font-semibold"
+      >
+        Most Popular
+      </span>
+
+      <!-- Tier Header -->
+      <div>
+        <h3 class="text-lg font-semibold">
+          {{ plan.name }}
+        </h3>
+
+        <p class="mt-2 text-sm text-white/60">
+          {{ plan.members }}
         </p>
       </div>
 
-      <div class="mt-12 grid gap-6 lg:grid-cols-3">
+      <!-- Total Investment -->
+      <div class="mt-6">
+        <p class="text-xs uppercase tracking-wider text-white/40">
+          Total Investment
+        </p>
+
+        <p class="mt-2 text-3xl font-bold">
+          {{ plan.total }}
+        </p>
+      </div>
+
+      <!-- Phase Breakdown -->
+      <div class="mt-7 space-y-3">
         <div
-          v-for="plan in plans"
-          :key="plan.name"
-          class="relative flex flex-col rounded-2xl border p-7"
-          :class="
-            plan.highlight
-              ? 'border-purple-400/50 bg-gradient-to-b from-purple-500/15 to-fuchsia-500/5 shadow-2xl shadow-purple-500/10'
-              : 'border-white/10 bg-white/[0.03]'
-          "
+          class="flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.03] px-4 py-3"
         >
-          <span
-            v-if="plan.highlight"
-            class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500 px-4 py-1 text-xs font-semibold"
-          >
-            Most Popular
+          <span class="text-sm text-white/60">
+            Phase 1
           </span>
 
-          <h3 class="text-lg font-semibold">{{ plan.name }}</h3>
-          <p class="mt-4 text-4xl font-bold">
-            {{ plan.price }} <span class="text-base font-normal text-white/50">/month</span>
-          </p>
-          <p class="mt-3 text-sm text-white/60">{{ plan.tagline }}</p>
-
-          <ul class="mt-6 flex-1 space-y-3 text-sm text-white/70">
-            <li v-for="f in plan.features" :key="f" class="flex items-start gap-2.5">
-              <svg
-                class="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald-400"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-              </svg>
-              {{ f }}
-            </li>
-          </ul>
-
-          <p class="mt-6 text-xs text-white/40">Best for: {{ plan.best }}</p>
-
-          <a
-            href="#"
-            class="mt-6 block rounded-full px-6 py-3 text-center text-sm font-semibold transition"
-            :class="
-              plan.highlight
-                ? 'bg-gradient-to-r from-purple-500 to-fuchsia-500 shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50'
-                : 'border border-white/15 bg-white/5 hover:bg-white/10'
-            "
-          >
-            Get Started Now
-          </a>
+          <span class="text-sm font-semibold text-white">
+            {{ plan.phase1 }}
+          </span>
         </div>
-      </div>
 
-      <!-- Enterprise -->
-      <div
-        class="mt-6 flex flex-col items-center justify-between gap-6 rounded-2xl border border-white/10 bg-white/[0.03] p-7 sm:flex-row"
-      >
-        <div>
-          <h3 class="text-lg font-semibold">Enterprise — Custom Pricing</h3>
-          <p class="mt-1 text-sm text-white/60">
-            Unlimited channels & conversations, custom AI training, full API access, dedicated
-            account manager.
-          </p>
-        </div>
-        <a
-          href="#"
-          class="whitespace-nowrap rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold transition hover:bg-white/10"
+        <div
+          class="flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.03] px-4 py-3"
         >
-          Talk to Sales →
-        </a>
+          <span class="text-sm text-white/60">
+            Phase 2
+          </span>
+
+          <span class="text-sm font-semibold text-white">
+            {{ plan.phase2 }}
+          </span>
+        </div>
+
+        <div
+          class="flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.03] px-4 py-3"
+        >
+          <span class="text-sm text-white/60">
+            Phase 3
+          </span>
+
+          <span class="text-sm font-semibold text-white">
+            {{ plan.phase3 }}
+          </span>
+        </div>
       </div>
 
-      <p class="mx-auto mt-8 max-w-2xl text-center text-xs text-white/40">
-        A single human closer costs $60,000–$130,000 a year fully loaded. Most standalone AI SDR
-        tools run $900 to $10,000+ a month — and many only handle outbound email. LCI was priced to
-        make that comparison embarrassing for them.
-      </p>
-    </section>
+      <!-- CTA -->
+      <router-link
+        to="/pricing"
+        class="mt-7 block rounded-full px-6 py-3 text-center text-sm font-semibold transition"
+        :class="
+          plan.highlight
+            ? 'bg-gradient-to-r from-purple-500 to-fuchsia-500 shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50'
+            : 'border border-white/15 bg-white/5 hover:bg-white/10'
+        "
+      >
+        Get Started
+      </router-link>
+    </div>
+  </div>
 
+  <!-- Pricing Note -->
+  <div
+    class="mx-auto mt-10 max-w-4xl rounded-2xl border border-white/10 bg-white/[0.03] p-6 text-center"
+  >
+    <p class="text-sm leading-6 text-white/60">
+      Pricing reflects a
+      <span class="font-semibold text-white">
+        full-team implementation
+      </span>
+      rather than per-seat licensing.
+    </p>
+
+    <p class="mt-3 text-sm leading-6 text-white/50">
+      Teams above 40 members, engagements involving multiple teams,
+      or engagements spanning multiple office locations will be
+      quoted separately based on the required cohort structure.
+    </p>
+  </div>
+
+  <!-- Enterprise / Custom -->
+  <div
+    class="mt-6 flex flex-col items-start justify-between gap-6 rounded-2xl border border-white/10 bg-gradient-to-r from-purple-500/10 to-fuchsia-500/5 p-7 sm:flex-row sm:items-center"
+  >
+    <div>
+      <h3 class="text-lg font-semibold">
+        Enterprise — Custom Pricing
+      </h3>
+
+      <p class="mt-2 max-w-2xl text-sm leading-6 text-white/60">
+        For teams above 40 members, multiple teams, or deployments
+        across multiple office locations. Pricing is tailored to your
+        required cohort structure and implementation needs.
+      </p>
+    </div>
+
+    <router-link
+      to="/pricing"
+      class="whitespace-nowrap rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500 px-6 py-3 text-sm font-semibold shadow-lg shadow-purple-500/20 transition hover:shadow-purple-500/40"
+    >
+      Talk to Sales →
+    </router-link>
+  </div>
+</section>
     <!-- FOOTER -->
     <footer class="border-t border-white/5 px-5 py-10 sm:px-8">
       <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 sm:flex-row">
