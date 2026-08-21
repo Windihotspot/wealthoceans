@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { supabase } from '@/lib/supabase' // adjust to wherever your Supabase client lives
+import { supabase } from '@/services/supabase' // adjust to wherever your Supabase client lives
 
 const props = defineProps<{ modelValue: boolean }>()
 const emit = defineEmits<{
@@ -40,31 +40,65 @@ function resetForm() {
 
 async function submit() {
   const { valid: isValid } = await formRef.value.validate()
+
   if (!isValid) return
 
   loading.value = true
   errorMsg.value = ''
 
-  // Insert triggers a Supabase DB webhook -> send-demo-email edge function,
-  // same pattern as your existing waitlist flow.
-  const { error } = await supabase.from('demo_requests').insert({
-    first_name: firstName.value.trim(),
-    last_name: lastName.value.trim(),
-    email: email.value.trim().toLowerCase(),
-  })
+  try {
+    // 1. Save demo request
+    const { data, error: insertError } = await supabase
+      .from('demo_requests')
+      .insert({
+        first_name: firstName.value.trim(),
+        last_name: lastName.value.trim(),
+        email: email.value.trim().toLowerCase(),
+      })
+      .select()
+      .single()
 
-  loading.value = false
+    if (insertError) {
+      if (insertError.code === '23505') {
+        errorMsg.value = "You're already booked — we'll be in touch."
+      } else {
+        console.error('Demo insert error:', insertError)
+        errorMsg.value = 'Something went wrong. Please try again.'
+      }
 
-  if (error) {
-    errorMsg.value =
-      error.code === '23505'
-        ? "You're already booked — we'll be in touch."
-        : 'Something went wrong. Please try again.'
-    return
+      return
+    }
+
+    // 2. Directly call your Edge Function
+    const { data: functionData, error: functionError } =
+      await supabase.functions.invoke('quick-function', {
+        body: {
+          record: data,
+        },
+      })
+
+    if (functionError) {
+      console.error('Email function error:', functionError)
+      console.error('Function response:', functionData)
+
+      errorMsg.value =
+        'Your booking was saved, but we could not send the confirmation email. Please contact us.'
+
+      return
+    }
+
+    console.log('Email function success:', functionData)
+
+    // 3. Show success
+    success.value = true
+    emit('booked')
+  } catch (error) {
+    console.error('Unexpected error:', error)
+
+    errorMsg.value = 'Something went wrong. Please try again.'
+  } finally {
+    loading.value = false
   }
-
-  success.value = true
-  emit('booked')
 }
 </script>
 
