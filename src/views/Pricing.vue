@@ -259,12 +259,14 @@ const faqs = [
           </p>
         </div>
 
-        <router-link
-          to="/pricing"
-          class="whitespace-nowrap rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500 px-6 py-3 text-sm font-semibold shadow-lg shadow-purple-500/20 transition hover:shadow-purple-500/40"
-        >
-          Talk to Sales →
-        </router-link>
+        <a
+  href="https://wa.me/2348165745741?text=Hi%20Wealth%20Oceans%2C%20I%27m%20interested%20in%20talking%20to%20sales."
+  target="_blank"
+  rel="noopener noreferrer"
+  class="whitespace-nowrap rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500 px-6 py-3 text-sm font-semibold shadow-lg shadow-purple-500/20 transition hover:shadow-purple-500/40"
+>
+  Talk to Sales →
+</a>
       </div>
     </section>
     <!-- FOOTER -->
