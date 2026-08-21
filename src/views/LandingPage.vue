@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import Navbar from '@/components/Navbar.vue'
 
 const mobileMenuOpen = ref(true)
 const activeFaq = ref<number | null>(0)
@@ -131,100 +132,7 @@ const faqs = [
       ></div>
     </div>
 
-    <!-- NAVBAR -->
-    <header class="sticky top-0 z-50 border-b border-white/5 bg-[#0B0A14]/80 backdrop-blur-xl">
-      <nav class="mx-auto flex w-full items-center justify-between px-5 py-4 ">
-        <router-link to="/" class="flex items-center gap-2">
-          <img src="../assets/wealthoceans-removebg-preview.png" class="w-40" alt="" />
-        </router-link>
-
-        <div class="hidden items-center gap-8 text-sm font-medium text-white/70 md:flex">
-          <router-link to="/about" class="transition hover:text-white">About us</router-link>
-          <router-link to="/product" class="transition hover:text-white">Product</router-link>
-          <router-link to="/how-it-works" class="transition hover:text-white"
-            >How It Works</router-link
-          >
-          <router-link to="/pricing" class="transition hover:text-white">Pricing</router-link>
-          <router-link to="/training" class="transition hover:text-white">Training</router-link>
-          <router-link to="/faq" class="transition hover:text-white">FAQ</router-link>
-        </div>
-
-        <div class="hidden items-center gap-3 md:flex">
-          <router-link
-            to="/pricing"
-            class="text-sm font-medium text-white/70 transition hover:text-white"
-            >Book a Demo</router-link
-          >
-          <router-link
-            to="/pricing"
-            class="rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500 px-5 py-2.5 text-sm font-semibold shadow-lg shadow-purple-500/30 transition hover:shadow-purple-500/50"
-          >
-            Get Started Free
-          </router-link>
-        </div>
-
-        <button
-          class="md:hidden"
-          @click="mobileMenuOpen = !mobileMenuOpen"
-          aria-label="Toggle menu"
-        >
-          <svg
-            v-if="!mobileMenuOpen"
-            class="h-6 w-6"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-          <svg
-            v-else
-            class="h-6 w-6"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </nav>
-
-      <!-- Mobile menu -->
-      <transition
-        enter-active-class="transition ease-out duration-200"
-        enter-from-class="opacity-0 -translate-y-2"
-        enter-to-class="opacity-100 translate-y-0"
-      >
-        <div
-          v-if="mobileMenuOpen"
-          class="border-t border-white/5 bg-[#0B0A14] px-5 pb-6 pt-4 md:hidden"
-        >
-          <div class="flex flex-col gap-4 text-sm font-medium text-white/70">
-            <router-link to="/about" @click="mobileMenuOpen = false" class="hover:text-white"
-              >About us</router-link
-            >
-            <router-link to="/product" @click="mobileMenuOpen = false" class="hover:text-white"
-              >Product</router-link
-            >
-            <router-link to="/how-it-works" @click="mobileMenuOpen = false" class="hover:text-white"
-              >How It Works</router-link
-            >
-            <router-link to="/pricing" @click="mobileMenuOpen = false" class="hover:text-white"
-              >Pricing</router-link
-            >
-            <router-link to="/training" @click="mobileMenuOpen = false" class="hover:text-white"
-              >Training</router-link
-            >
-            <router-link to="/faq" @click="mobileMenuOpen = false" class="hover:text-white"
-              >FAQ</router-link
-            >
-            
-          </div>
-        </div>
-      </transition>
-    </header>
+   <Navbar/>
 
     <!-- HERO -->
     <!-- HERO -->
@@ -269,14 +177,9 @@ const faqs = [
             href="#pricing"
             class="w-full rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500 px-8 py-4 text-sm font-semibold text-white shadow-xl shadow-purple-500/30 transition hover:shadow-purple-500/50 sm:w-auto"
           >
-            Get Started Free
+            Book a demo
           </a>
-          <a
-            href="#"
-            class="w-full rounded-full border border-white bg-white px-8 py-4 text-sm font-semibold text-[#0B0A14] transition hover:bg-white/90 sm:w-auto"
-          >
-            Get a Demo
-          </a>
+          
         </div>
       </div>
     </section>

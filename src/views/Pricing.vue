@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Navbar from '@/components/Navbar.vue'
 import { ref } from 'vue'
 
 const mobileMenuOpen = ref(true)
@@ -122,254 +123,150 @@ const faqs = [
       ></div>
     </div>
 
-    <!-- NAVBAR -->
-    <header class="sticky top-0 z-50 border-b border-white/5 bg-[#0B0A14]/80 backdrop-blur-xl">
-      <nav class="mx-auto flex w-full items-center justify-between px-5 py-4 ">
-        <router-link to="/" class="flex items-center gap-2">
-          <img src="../assets/wealthoceans-removebg-preview.png" class="w-40" alt="" />
-        </router-link>
-
-        <div class="hidden items-center gap-8 text-sm font-medium text-white/70 md:flex">
-          <router-link to="/about" class="transition hover:text-white">About us</router-link>
-          <router-link to="/product" class="transition hover:text-white">Product</router-link>
-          <router-link to="/how-it-works" class="transition hover:text-white"
-            >How It Works</router-link
-          >
-          <router-link to="/pricing" class="transition hover:text-white">Pricing</router-link>
-          <router-link to="/training" class="transition hover:text-white">Training</router-link>
-          <router-link to="/faq" class="transition hover:text-white">FAQ</router-link>
-        </div>
-
-        <div class="hidden items-center gap-3 md:flex">
-          <router-link
-            to="/pricing"
-            class="text-sm font-medium text-white/70 transition hover:text-white"
-            >Book a Demo</router-link
-          >
-          <router-link
-            to="/pricing"
-            class="rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500 px-5 py-2.5 text-sm font-semibold shadow-lg shadow-purple-500/30 transition hover:shadow-purple-500/50"
-          >
-            Get Started Free
-          </router-link>
-        </div>
-
-        <button
-          class="md:hidden"
-          @click="mobileMenuOpen = !mobileMenuOpen"
-          aria-label="Toggle menu"
-        >
-          <svg
-            v-if="!mobileMenuOpen"
-            class="h-6 w-6"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-          <svg
-            v-else
-            class="h-6 w-6"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </nav>
-
-      <!-- Mobile menu -->
-      <transition
-        enter-active-class="transition ease-out duration-200"
-        enter-from-class="opacity-0 -translate-y-2"
-        enter-to-class="opacity-100 translate-y-0"
-      >
-        <div
-          v-if="mobileMenuOpen"
-          class="border-t border-white/5 bg-[#0B0A14] px-5 pb-6 pt-4 md:hidden"
-        >
-          <div class="flex flex-col gap-4 text-sm font-medium text-white/70">
-            <router-link to="/about" @click="mobileMenuOpen = false" class="hover:text-white"
-              >About us</router-link
-            >
-            <router-link to="/product" @click="mobileMenuOpen = false" class="hover:text-white"
-              >Product</router-link
-            >
-            <router-link to="/how-it-works" @click="mobileMenuOpen = false" class="hover:text-white"
-              >How It Works</router-link
-            >
-            <router-link to="/pricing" @click="mobileMenuOpen = false" class="hover:text-white"
-              >Pricing</router-link
-            >
-            <router-link to="/training" @click="mobileMenuOpen = false" class="hover:text-white"
-              >Training</router-link
-            >
-            <router-link to="/faq" @click="mobileMenuOpen = false" class="hover:text-white"
-              >FAQ</router-link
-            >
-            
-          </div>
-        </div>
-      </transition>
-    </header>
+   <navbar/>
 
     <!-- PRICING -->
     <!-- PRICING -->
-<section id="pricing" class="mx-auto max-w-7xl px-5 py-16 sm:px-8">
-  <div class="text-center">
-    <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">
-      Pricing
-    </h2>
+    <section id="pricing" class="mx-auto max-w-7xl px-5 py-16 sm:px-8">
+      <div class="text-center">
+        <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Pricing</h2>
 
-    <p class="mx-auto mt-3 max-w-2xl text-white/60">
+        <!-- <p class="mx-auto mt-3 max-w-2xl text-white/60">
       Flexible team-based implementation pricing designed to help your
       organization deploy LCI across your sales team.
-    </p>
-  </div>
+    </p> -->
+        <p class="mx-auto mt-3 max-w-2xl text-white/60">
+          14-day pilot period so you can see real conversations close before you commit.
+        </p>
+      </div>
 
-  <!-- Pricing Cards -->
-  <div class="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-    <div
-      v-for="plan in plans"
-      :key="plan.name"
-      class="relative flex flex-col rounded-2xl border p-6 transition-all duration-300 hover:-translate-y-1"
-      :class="
-        plan.highlight
-          ? 'border-purple-400/50 bg-gradient-to-b from-purple-500/15 to-fuchsia-500/5 shadow-2xl shadow-purple-500/10'
-          : 'border-white/10 bg-white/[0.03] hover:border-white/20 hover:bg-white/[0.05]'
-      "
-    >
-      <!-- Most Popular -->
-      <span
-        v-if="plan.highlight"
-        class="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500 px-4 py-1 text-xs font-semibold"
+      <!-- Pricing Cards -->
+      <div class="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        <div
+          v-for="plan in plans"
+          :key="plan.name"
+          class="relative flex flex-col rounded-2xl border p-6 transition-all duration-300 hover:-translate-y-1"
+          :class="
+            plan.highlight
+              ? 'border-purple-400/50 bg-gradient-to-b from-purple-500/15 to-fuchsia-500/5 shadow-2xl shadow-purple-500/10'
+              : 'border-white/10 bg-white/[0.03] hover:border-white/20 hover:bg-white/[0.05]'
+          "
+        >
+          <!-- Most Popular -->
+          <span
+            v-if="plan.highlight"
+            class="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500 px-4 py-1 text-xs font-semibold"
+          >
+            Most Popular
+          </span>
+
+          <!-- Tier Header -->
+          <div>
+            <h3 class="text-lg font-semibold">
+              {{ plan.name }}
+            </h3>
+
+            <p class="mt-2 text-sm text-white/60">
+              {{ plan.members }}
+            </p>
+          </div>
+
+          <!-- Total Investment -->
+          <div class="mt-6">
+            <p class="text-xs uppercase tracking-wider text-white/40">Total Investment</p>
+
+            <p class="mt-2 text-3xl font-bold">
+              {{ plan.total }}
+            </p>
+          </div>
+
+          <!-- Phase Breakdown -->
+          <div class="mt-7 space-y-3">
+            <div
+              class="flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.03] px-4 py-3"
+            >
+              <span class="text-sm text-white/60"> Phase 1 </span>
+
+              <span class="text-sm font-semibold text-white">
+                {{ plan.phase1 }}
+              </span>
+            </div>
+
+            <div
+              class="flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.03] px-4 py-3"
+            >
+              <span class="text-sm text-white/60"> Phase 2 </span>
+
+              <span class="text-sm font-semibold text-white">
+                {{ plan.phase2 }}
+              </span>
+            </div>
+
+            <div
+              class="flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.03] px-4 py-3"
+            >
+              <span class="text-sm text-white/60"> Phase 3 </span>
+
+              <span class="text-sm font-semibold text-white">
+                {{ plan.phase3 }}
+              </span>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <router-link
+            to="/pricing"
+            class="mt-7 block rounded-full px-6 py-3 text-center text-sm font-semibold transition"
+            :class="
+              plan.highlight
+                ? 'bg-gradient-to-r from-purple-500 to-fuchsia-500 shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50'
+                : 'border border-white/15 bg-white/5 hover:bg-white/10'
+            "
+          >
+            Get Started
+          </router-link>
+        </div>
+      </div>
+
+      <!-- Pricing Note -->
+      <div
+        class="mx-auto mt-10 max-w-4xl rounded-2xl border border-white/10 bg-white/[0.03] p-6 text-center"
       >
-        Most Popular
-      </span>
+        <p class="text-sm leading-6 text-white/60">
+          Pricing reflects a
+          <span class="font-semibold text-white"> full-team implementation </span>
+          rather than per-seat licensing.
+        </p>
 
-      <!-- Tier Header -->
-      <div>
-        <h3 class="text-lg font-semibold">
-          {{ plan.name }}
-        </h3>
-
-        <p class="mt-2 text-sm text-white/60">
-          {{ plan.members }}
+        <p class="mt-3 text-sm leading-6 text-white/50">
+          Teams above 40 members, engagements involving multiple teams, or engagements spanning
+          multiple office locations will be quoted separately based on the required cohort
+          structure.
         </p>
       </div>
 
-      <!-- Total Investment -->
-      <div class="mt-6">
-        <p class="text-xs uppercase tracking-wider text-white/40">
-          Total Investment
-        </p>
-
-        <p class="mt-2 text-3xl font-bold">
-          {{ plan.total }}
-        </p>
-      </div>
-
-      <!-- Phase Breakdown -->
-      <div class="mt-7 space-y-3">
-        <div
-          class="flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.03] px-4 py-3"
-        >
-          <span class="text-sm text-white/60">
-            Phase 1
-          </span>
-
-          <span class="text-sm font-semibold text-white">
-            {{ plan.phase1 }}
-          </span>
-        </div>
-
-        <div
-          class="flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.03] px-4 py-3"
-        >
-          <span class="text-sm text-white/60">
-            Phase 2
-          </span>
-
-          <span class="text-sm font-semibold text-white">
-            {{ plan.phase2 }}
-          </span>
-        </div>
-
-        <div
-          class="flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.03] px-4 py-3"
-        >
-          <span class="text-sm text-white/60">
-            Phase 3
-          </span>
-
-          <span class="text-sm font-semibold text-white">
-            {{ plan.phase3 }}
-          </span>
-        </div>
-      </div>
-
-      <!-- CTA -->
-      <router-link
-        to="/pricing"
-        class="mt-7 block rounded-full px-6 py-3 text-center text-sm font-semibold transition"
-        :class="
-          plan.highlight
-            ? 'bg-gradient-to-r from-purple-500 to-fuchsia-500 shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50'
-            : 'border border-white/15 bg-white/5 hover:bg-white/10'
-        "
+      <!-- Enterprise / Custom -->
+      <div
+        class="mt-6 flex flex-col items-start justify-between gap-6 rounded-2xl border border-white/10 bg-gradient-to-r from-purple-500/10 to-fuchsia-500/5 p-7 sm:flex-row sm:items-center"
       >
-        Get Started
-      </router-link>
-    </div>
-  </div>
+        <div>
+          <h3 class="text-lg font-semibold">Enterprise — Custom Pricing</h3>
 
-  <!-- Pricing Note -->
-  <div
-    class="mx-auto mt-10 max-w-4xl rounded-2xl border border-white/10 bg-white/[0.03] p-6 text-center"
-  >
-    <p class="text-sm leading-6 text-white/60">
-      Pricing reflects a
-      <span class="font-semibold text-white">
-        full-team implementation
-      </span>
-      rather than per-seat licensing.
-    </p>
+          <p class="mt-2 max-w-2xl text-sm leading-6 text-white/60">
+            For teams above 40 members, multiple teams, or deployments across multiple office
+            locations. Pricing is tailored to your required cohort structure and implementation
+            needs.
+          </p>
+        </div>
 
-    <p class="mt-3 text-sm leading-6 text-white/50">
-      Teams above 40 members, engagements involving multiple teams,
-      or engagements spanning multiple office locations will be
-      quoted separately based on the required cohort structure.
-    </p>
-  </div>
-
-  <!-- Enterprise / Custom -->
-  <div
-    class="mt-6 flex flex-col items-start justify-between gap-6 rounded-2xl border border-white/10 bg-gradient-to-r from-purple-500/10 to-fuchsia-500/5 p-7 sm:flex-row sm:items-center"
-  >
-    <div>
-      <h3 class="text-lg font-semibold">
-        Enterprise — Custom Pricing
-      </h3>
-
-      <p class="mt-2 max-w-2xl text-sm leading-6 text-white/60">
-        For teams above 40 members, multiple teams, or deployments
-        across multiple office locations. Pricing is tailored to your
-        required cohort structure and implementation needs.
-      </p>
-    </div>
-
-    <router-link
-      to="/pricing"
-      class="whitespace-nowrap rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500 px-6 py-3 text-sm font-semibold shadow-lg shadow-purple-500/20 transition hover:shadow-purple-500/40"
-    >
-      Talk to Sales →
-    </router-link>
-  </div>
-</section>
+        <router-link
+          to="/pricing"
+          class="whitespace-nowrap rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500 px-6 py-3 text-sm font-semibold shadow-lg shadow-purple-500/20 transition hover:shadow-purple-500/40"
+        >
+          Talk to Sales →
+        </router-link>
+      </div>
+    </section>
     <!-- FOOTER -->
     <footer class="border-t border-white/5 px-5 py-10 sm:px-8">
       <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 sm:flex-row">
