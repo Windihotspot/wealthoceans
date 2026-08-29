@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 
-const mobileMenuOpen = ref(false);
+const mobileMenuOpen = ref(true);
 </script>
 
 <template>
@@ -79,7 +79,7 @@ const mobileMenuOpen = ref(false);
        
 
         <RouterLink
-          to="/pricing"
+          to="/"
           class="rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-purple-500/30 transition hover:shadow-purple-500/50"
         >
           Book a demo
@@ -199,7 +199,7 @@ const mobileMenuOpen = ref(false);
            
 
             <RouterLink
-              to="/pricing"
+              to="/"
               @click="mobileMenuOpen = false"
               class="rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500 px-5 py-3 text-center font-semibold text-white shadow-lg shadow-purple-500/30"
             >

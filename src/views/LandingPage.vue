@@ -60,40 +60,71 @@ const channels = ['Website', 'WhatsApp', 'Instagram', 'Facebook', 'LinkedIn', 'T
 
 const plans = [
   {
-    name: 'Tier 1',
-    members: '1–5 members',
-    phase1: '₦350,000',
-    phase2: '₦1,500,000',
-    phase3: '₦600,000',
-    total: '₦2,450,000',
+    name: 'Starter',
+    price: '$97',
+    period: '/month',
+    description: 'For businesses just getting their first AI closer live.',
+    features: [
+      '2 channels (Website chat and WhatsApp or Instagram and WhatsApp)',
+      'Up to 500 active conversations/month',
+      'Lead qualification & scoring',
+      'Basic offer generator',
+      'Standard dashboard',
+      'Email support'
+    ],
+    bestFor: 'Solo coaches, consultants, and creators testing their first automated close.',
     highlight: false
   },
   {
-    name: 'Tier 2',
-    members: '6–15 members',
-    phase1: '₦450,000',
-    phase2: '₦1,900,000',
-    phase3: '₦750,000',
-    total: '₦3,100,000',
+    name: 'Growth',
+    price: '$297',
+    period: '/month',
+    description: 'For businesses ready to stop losing leads across multiple platforms.',
+    features: [
+      'Up to 3 channels (Website, WhatsApp, Instagram, Facebook — pick any 3)',
+      'Up to 2,500 active conversations/month',
+      'Full AI Sales Agent (objection handling, closing, payment links)',
+      'Omnichannel identity tracking',
+      'Offer & funnel generator',
+      'Priority chat + email support'
+    ],
+    bestFor: 'Growing coaches, SaaS founders, and info-product businesses running real ad spend.',
     highlight: true
   },
   {
-    name: 'Tier 3',
-    members: '16–30 members',
-    phase1: '₦550,000',
-    phase2: '₦2,300,000',
-    phase3: '₦900,000',
-    total: '₦3,750,000',
+    name: 'Premium',
+    price: '$797',
+    period: '/month',
+    description: 'For businesses that want the full closer, not just the chat.',
+    features: [
+      'All channels, fully connected',
+      'Up to 10,000 active conversations/month',
+      'Full AI Sales Agent + High-Ticket Closing System',
+      'Calendar gating and qualified booking',
+      'AI Email Marketing & Nurture',
+      'ActiveCampaign, Systeme.io & Mailchimp integration',
+      'Advanced analytics',
+      'Dedicated onboarding + priority support'
+    ],
+    bestFor:
+      'Established coaches, agencies, and real estate teams with a real sales pipeline and high-ticket offers.',
     highlight: false
   },
   {
-    name: 'Tier 4',
-    members: '31–40 members',
-    phase1: '₦600,000',
-    phase2: '₦2,500,000',
-    phase3: '₦1,000,000',
-    total: '₦4,100,000',
-    highlight: false
+    name: 'Enterprise',
+    price: 'Custom',
+    period: '',
+    description: 'For businesses that need LCI trained on their own data, at their own scale.',
+    features: [
+      'Unlimited channels & conversations',
+      'Custom AI training on historical conversations and sales data',
+      'Full API access',
+      'Dedicated account manager',
+      'Custom integrations & SLAs'
+    ],
+    bestFor: 'Agencies managing multiple clients and high-volume revenue teams.',
+    highlight: false,
+    enterprise: true
   }
 ]
 const faqs = [
@@ -124,7 +155,7 @@ const faqs = [
       ></div>
     </div>
 
-   <Navbar/>
+    <Navbar />
 
     <!-- HERO -->
     <!-- HERO -->
@@ -154,8 +185,7 @@ const faqs = [
         </h1>
 
         <p class="mx-auto mt-8 max-w-xl text-lg text-white/75 sm:text-lg">
-          <span class="font-bold text-white">LCI wont let that happen</span> 
-          
+          <span class="font-bold text-white">LCI wont let that happen</span>
         </p>
 
         <p class="mx-auto mt-8 max-w-xl text-base text-white/75 sm:text-lg">
@@ -166,12 +196,11 @@ const faqs = [
 
         <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <button
-  type="button"
-  class="w-full rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500 px-8 py-4 text-sm font-semibold text-white shadow-xl shadow-purple-500/30 transition hover:shadow-purple-500/50 sm:w-auto"
->
-  Book a demo
-</button>
-          
+            type="button"
+            class="w-full rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500 px-8 py-4 text-sm font-semibold text-white shadow-xl shadow-purple-500/30 transition hover:shadow-purple-500/50 sm:w-auto"
+          >
+            Get Started for free
+          </button>
         </div>
       </div>
     </section>
@@ -379,148 +408,227 @@ const faqs = [
       </div>
     </section>
 
-   <section id="pricing" class="mx-auto max-w-7xl px-5 py-16 sm:px-8">
-      <div class="text-center">
-        <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Pricing</h2>
+    <!-- PRICING -->
+    <section id="pricing" class="mx-auto max-w-7xl px-5 py-20 sm:px-8">
+      <!-- Section Header -->
+      <div class="mx-auto max-w-2xl text-center">
 
-        <!-- <p class="mx-auto mt-3 max-w-2xl text-white/60">
-      Flexible team-based implementation pricing designed to help your
-      organization deploy LCI across your sales team.
-    </p> -->
-        <p class="mx-auto mt-3 max-w-2xl text-white/60">
-          14-day pilot period so you can see real conversations close before you commit.
+        <h2 class="mt-4 text-3xl font-bold tracking-tight sm:text-4xl lg:text-3xl">
+          Pricing
+        </h2>
+
+        <p class="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/60 sm:text-lg">
+          Start with the plan that fits your business and let LCI turn more of your conversations
+          into paying customers.
         </p>
       </div>
 
       <!-- Pricing Cards -->
-      <div class="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+      <div class="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
         <div
           v-for="plan in plans"
           :key="plan.name"
-          class="relative flex flex-col rounded-2xl border p-6 transition-all duration-300 hover:-translate-y-1"
+          class="relative flex h-full flex-col rounded-3xl border p-6 transition-all duration-300 hover:-translate-y-1 sm:p-7"
           :class="
             plan.highlight
-              ? 'border-purple-400/50 bg-gradient-to-b from-purple-500/15 to-fuchsia-500/5 shadow-2xl shadow-purple-500/10'
+              ? 'border-purple-400/50 bg-gradient-to-b from-purple-500/15 via-fuchsia-500/5 to-white/[0.02] shadow-2xl shadow-purple-500/10'
               : 'border-white/10 bg-white/[0.03] hover:border-white/20 hover:bg-white/[0.05]'
           "
         >
-          <!-- Most Popular -->
-          <span
-            v-if="plan.highlight"
-            class="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500 px-4 py-1 text-xs font-semibold"
-          >
-            Most Popular
-          </span>
+          <!-- Most Popular Badge -->
+          <div v-if="plan.highlight" class="absolute -top-3 left-1/2 -translate-x-1/2">
+            <span
+              class="whitespace-nowrap rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500 px-4 py-1.5 text-xs font-semibold text-white shadow-lg shadow-purple-500/30"
+            >
+              Most Popular
+            </span>
+          </div>
 
-          <!-- Tier Header -->
+          <!-- Plan Header -->
           <div>
-            <h3 class="text-lg font-semibold">
+            <h3 class="text-xl font-semibold text-white">
               {{ plan.name }}
             </h3>
 
-            <p class="mt-2 text-sm text-white/60">
-              {{ plan.members }}
+            <p class="mt-3 min-h-[48px] text-sm leading-6 text-white/55">
+              {{ plan.description }}
             </p>
           </div>
 
-          <!-- Total Investment -->
-          <div class="mt-6">
-            <p class="text-xs uppercase tracking-wider text-white/40">Total Investment</p>
+          <!-- Price -->
+          <div class="mt-7">
+            <div class="flex items-end gap-1">
+              <span class="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+                {{ plan.price }}
+              </span>
 
-            <p class="mt-2 text-3xl font-bold">
-              {{ plan.total }}
-            </p>
+              <span v-if="plan.period" class="mb-1.5 text-sm text-white/45">
+                {{ plan.period }}
+              </span>
+            </div>
           </div>
 
-          <!-- Phase Breakdown -->
-          <div class="mt-7 space-y-3">
-            <div
-              class="flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.03] px-4 py-3"
-            >
-              <span class="text-sm text-white/60"> Phase 1 </span>
+          <!-- Divider -->
+          <div class="my-7 h-px bg-white/10"></div>
 
-              <span class="text-sm font-semibold text-white">
-                {{ plan.phase1 }}
-              </span>
-            </div>
+          <!-- Features -->
+          <div class="flex-1">
+            <p class="mb-4 text-xs font-semibold uppercase tracking-wider text-white/40">
+              What's included
+            </p>
 
-            <div
-              class="flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.03] px-4 py-3"
-            >
-              <span class="text-sm text-white/60"> Phase 2 </span>
+            <ul class="space-y-3.5">
+              <li v-for="feature in plan.features" :key="feature" class="flex items-start gap-3">
+                <span
+                  class="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full"
+                  :class="plan.highlight ? 'bg-purple-500/15' : 'bg-white/5'"
+                >
+                  <svg
+                    class="h-3.5 w-3.5 text-emerald-400"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    viewBox="0 0 24 24"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </span>
 
-              <span class="text-sm font-semibold text-white">
-                {{ plan.phase2 }}
-              </span>
-            </div>
+                <span class="text-sm leading-5 text-white/70">
+                  {{ feature }}
+                </span>
+              </li>
+            </ul>
+          </div>
 
-            <div
-              class="flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.03] px-4 py-3"
-            >
-              <span class="text-sm text-white/60"> Phase 3 </span>
+          <!-- Best For -->
+          <div class="mt-7 rounded-2xl border border-white/5 bg-white/[0.025] p-4">
+            <p class="text-[11px] font-semibold uppercase tracking-wider text-white/35">Best for</p>
 
-              <span class="text-sm font-semibold text-white">
-                {{ plan.phase3 }}
-              </span>
-            </div>
+            <p class="mt-2 text-xs leading-5 text-white/55">
+              {{ plan.bestFor }}
+            </p>
           </div>
 
           <!-- CTA -->
           <router-link
             to="/pricing"
-            class="mt-7 block rounded-full px-6 py-3 text-center text-sm font-semibold transition"
+            class="mt-6 block w-full rounded-full px-6 py-3.5 text-center text-sm font-semibold transition-all duration-200"
             :class="
               plan.highlight
-                ? 'bg-gradient-to-r from-purple-500 to-fuchsia-500 shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50'
-                : 'border border-white/15 bg-white/5 hover:bg-white/10'
+                ? 'bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40'
+                : plan.enterprise
+                  ? 'border border-white/15 bg-white/5 text-white hover:bg-white/10'
+                  : 'border border-white/15 bg-white/5 text-white hover:bg-white/10'
             "
           >
-            Get Started
+            {{ plan.enterprise ? 'Talk to Sales →' : 'Get Started' }}
           </router-link>
         </div>
       </div>
 
-      <!-- Pricing Note -->
+      <!-- Every Plan Includes -->
       <div
-        class="mx-auto mt-10 max-w-4xl rounded-2xl border border-white/10 bg-white/[0.03] p-6 text-center"
+        class="mx-auto mt-12 max-w-5xl rounded-3xl border border-white/10 bg-white/[0.025] p-6 sm:p-8"
       >
-        <p class="text-sm leading-6 text-white/60">
-          Pricing reflects a
-          <span class="font-semibold text-white"> full-team implementation </span>
-          rather than per-seat licensing.
-        </p>
+        <div class="text-center">
+          <h3 class="text-lg font-semibold text-white">Every Plan Includes</h3>
 
-        <p class="mt-3 text-sm leading-6 text-white/50">
-          Teams above 40 members, engagements involving multiple teams, or engagements spanning
-          multiple office locations will be quoted separately based on the required cohort
-          structure.
-        </p>
-      </div>
-
-      <!-- Enterprise / Custom -->
-      <div
-        class="mt-6 flex flex-col items-start justify-between gap-6 rounded-2xl border border-white/10 bg-gradient-to-r from-purple-500/10 to-fuchsia-500/5 p-7 sm:flex-row sm:items-center"
-      >
-        <div>
-          <h3 class="text-lg font-semibold">Enterprise — Custom Pricing</h3>
-
-          <p class="mt-2 max-w-2xl text-sm leading-6 text-white/60">
-            For teams above 40 members, multiple teams, or deployments across multiple office
-            locations. Pricing is tailored to your required cohort structure and implementation
-            needs.
+          <p class="mx-auto mt-2 max-w-xl text-sm text-white/50">
+            Everything you need to get LCI running and converting leads.
           </p>
         </div>
 
-        <a
-  href="https://wa.me/2348165745741?text=Hi%20Wealth%20Oceans%2C%20I%27m%20interested%20in%20talking%20to%20sales."
-  target="_blank"
-  rel="noopener noreferrer"
-  class="whitespace-nowrap rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500 px-6 py-3 text-sm font-semibold shadow-lg shadow-purple-500/20 transition hover:shadow-purple-500/40"
->
-  Talk to Sales →
-</a>
+        <div class="mt-7 grid gap-4 sm:grid-cols-3">
+          <div
+            class="flex items-center gap-3 rounded-2xl border border-white/5 bg-white/[0.02] px-4 py-4"
+          >
+            <span
+              class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-emerald-400/10"
+            >
+              <svg
+                class="h-4 w-4 text-emerald-400"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 2" />
+                <circle cx="12" cy="12" r="9" />
+              </svg>
+            </span>
+
+            <div>
+              <p class="text-sm font-medium text-white">Month-to-month</p>
+              <p class="mt-0.5 text-xs text-white/45">No long-term contract required</p>
+            </div>
+          </div>
+
+          <div
+            class="flex items-center gap-3 rounded-2xl border border-white/5 bg-white/[0.02] px-4 py-4"
+          >
+            <span
+              class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-purple-400/10"
+            >
+              <svg
+                class="h-4 w-4 text-purple-400"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4" />
+                <circle cx="12" cy="12" r="9" />
+              </svg>
+            </span>
+
+            <div>
+              <p class="text-sm font-medium text-white">14-day pilot</p>
+              <p class="mt-0.5 text-xs text-white/45">See real conversations close</p>
+            </div>
+          </div>
+
+          <div
+            class="flex items-center gap-3 rounded-2xl border border-white/5 bg-white/[0.02] px-4 py-4"
+          >
+            <span
+              class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-fuchsia-400/10"
+            >
+              <svg
+                class="h-4 w-4 text-fuchsia-400"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"
+                />
+                <circle cx="9" cy="7" r="4" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 8v6M22 11h-6" />
+              </svg>
+            </span>
+
+            <div>
+              <p class="text-sm font-medium text-white">Free onboarding</p>
+              <p class="mt-0.5 text-xs text-white/45">Connect your brand, offers & FAQs</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pricing Value Note -->
+      <div class="mx-auto mt-8 max-w-4xl text-center">
+        <p class="text-xs leading-5 text-white/35 sm:text-sm">
+          A single human closer can cost
+          <span class="text-white/55">$60,000–$130,000 a year fully loaded.</span>
+          LCI gives your business an AI closer that works around the clock.
+        </p>
       </div>
     </section>
+
     <!-- FAQ -->
     <section id="faq" class="mx-auto max-w-3xl px-5 py-16 sm:px-8">
       <h2 class="text-center text-3xl font-bold tracking-tight sm:text-4xl">
@@ -581,10 +689,7 @@ const faqs = [
         Get Started For Free
       </a>
     </section>
-    <BookDemo
-  v-model="demoDialog"
-  @booked="handleDemoBooked"
-/>
+    <BookDemo v-model="demoDialog" @booked="handleDemoBooked" />
 
     <!-- FOOTER -->
     <footer class="border-t border-white/5 px-5 py-10 sm:px-8">
