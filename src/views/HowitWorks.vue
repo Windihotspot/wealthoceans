@@ -28,7 +28,7 @@ const integrations = [
   },
   {
     step: '03',
-    title: 'AI Sales Agent \u2014 The Core Engine',
+    title: 'AI Sales Closer \u2014 The Core Engine',
     desc: 'Asks the qualifying questions a trained closer would ask, detects real intent, handles objections with no dead ends, and sends payment links to close the sale.'
   },
   {
