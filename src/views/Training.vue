@@ -12,7 +12,7 @@ const skills = [
   {
     num: '01',
     title: 'Audience & Awareness Mapping',
-    desc: 'Know exactly who\'s ready to buy and who still needs convincing, and stop talking to both the same way.'
+    desc: "Know exactly who's ready to buy and who still needs convincing, and stop talking to both the same way."
   },
   {
     num: '02',
@@ -37,7 +37,7 @@ const skills = [
   {
     num: '06',
     title: 'Live Role-Play & Installation',
-    desc: 'Practiced on your team\'s real leads, with live correction, until it sticks.'
+    desc: "Practiced on your team's real leads, with live correction, until it sticks."
   }
 ]
 
@@ -50,7 +50,7 @@ const phases = [
   {
     phase: '02',
     title: 'Installation',
-    desc: 'Your team\'s own content, offers, and DM-to-close scripts, built live in your voice — not handed to you as a template.'
+    desc: "Your team's own content, offers, and DM-to-close scripts, built live in your voice — not handed to you as a template."
   },
   {
     phase: '03',
@@ -60,36 +60,53 @@ const phases = [
 ]
 
 const results = [
-  { metric: 'UK-based agency client', outcome: '₦20 million in revenue attributed to content & ad messaging' },
+  {
+    metric: 'UK-based agency client',
+    outcome: '₦20 million in revenue attributed to content & ad messaging'
+  },
   { metric: 'Consumer app client', outcome: '11,000+ users converted to active app users' },
-  { metric: 'Technology sector client', outcome: 'Qualified leads driving tens of millions (₦) in business' },
-  { metric: 'Health & wellness sector client', outcome: '8 figures in direct sales attributed to the same conversion path' },
+  {
+    metric: 'Technology sector client',
+    outcome: 'Qualified leads driving tens of millions (₦) in business'
+  },
+  {
+    metric: 'Health & wellness sector client',
+    outcome: '8 figures in direct sales attributed to the same conversion path'
+  },
   { metric: 'Digital agency client', outcome: 'Over 800 quality leads pulled in, in under 14 days' }
 ]
 
 const pricingTiers = [
   {
-    team: '2–5 People',
-    price: '$4,900',
-    desc: 'Full diagnostic, live installation, 30-day reinforcement.',
+    team: 'Tier 1: 1–5 members',
+    phase1: '₦350,000',
+    phase2: '₦1,500,000',
+    phase3: '₦600,000',
+    total: '₦2,450,000',
     highlight: false
   },
   {
-    team: '6–12 People',
-    price: '$9,700',
-    desc: 'Everything in Starter, plus priority access and extended reinforcement.',
+    team: 'Tier 2: 6–15 members',
+    phase1: '₦450,000',
+    phase2: '₦1,900,000',
+    phase3: '₦750,000',
+    total: '₦3,100,000',
     highlight: true
   },
   {
-    team: '13–20 People',
-    price: '$14,500',
-    desc: 'Full team, dedicated session facilitator, ongoing group access.',
+    team: 'Tier 3: 16–30 members',
+    phase1: '₦550,000',
+    phase2: '₦2,300,000',
+    phase3: '₦900,000',
+    total: '₦3,750,000',
     highlight: false
   },
   {
-    team: '21+ People',
-    price: 'Custom',
-    desc: 'Enterprise pricing. Let\'s talk about what your team needs.',
+    team: 'Tier 4: 31–40 members',
+    phase1: '₦600,000',
+    phase2: '₦2,500,000',
+    phase3: '₦1,000,000',
+    total: '₦4,100,000',
     highlight: false
   }
 ]
@@ -101,7 +118,7 @@ const faqs = [
   },
   {
     q: 'How is this different from a course we could buy online?',
-    a: 'A course teaches in general. This is diagnosed against your actual leak, built on your actual content and DMs, guaranteed against your actual numbers. You\'re not learning theory—you\'re fixing what\'s broken in your funnel, right now.'
+    a: "A course teaches in general. This is diagnosed against your actual leak, built on your actual content and DMs, guaranteed against your actual numbers. You're not learning theory—you're fixing what's broken in your funnel, right now."
   },
   {
     q: 'Is this just ad and content writing training?',
@@ -109,11 +126,11 @@ const faqs = [
   },
   {
     q: 'What if my team resists the changes?',
-    a: 'That\'s built into the process. Phase 3 is 30 days of reinforcement with check-ins specifically to stop old habits creeping back. We\'re not handing you a playbook and leaving. We\'re staying until it sticks.'
+    a: "That's built into the process. Phase 3 is 30 days of reinforcement with check-ins specifically to stop old habits creeping back. We're not handing you a playbook and leaving. We're staying until it sticks."
   },
   {
     q: 'Do you work with international teams?',
-    a: 'Yes. We\'ve worked with teams in Nigeria, the UK, and the US. As long as you have real DMs, real content, and real ads running, we can diagnose and install the system.'
+    a: "Yes. We've worked with teams in Nigeria, the UK, and the US. As long as you have real DMs, real content, and real ads running, we can diagnose and install the system."
   }
 ]
 </script>
@@ -122,20 +139,28 @@ const faqs = [
   <div class="min-h-screen bg-[#0B0A14] text-white antialiased overflow-x-hidden">
     <!-- Background glow -->
     <div class="pointer-events-none fixed inset-0 -z-10">
-      <div class="absolute -top-40 left-1/2 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-purple-700/25 blur-[140px]"></div>
-      <div class="absolute top-1/3 -right-40 h-[500px] w-[500px] rounded-full bg-fuchsia-600/15 blur-[140px]"></div>
+      <div
+        class="absolute -top-40 left-1/2 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-purple-700/25 blur-[140px]"
+      ></div>
+      <div
+        class="absolute top-1/3 -right-40 h-[500px] w-[500px] rounded-full bg-fuchsia-600/15 blur-[140px]"
+      ></div>
     </div>
 
-    <navbar/>
+    <navbar />
 
     <!-- HERO -->
-    <section class="relative isolate flex min-h-screen items-center justify-center overflow-hidden px-12 text-center sm:px-8 sm:py-12">
+    <section
+      class="relative isolate flex min-h-screen items-center justify-center overflow-hidden px-12 text-center sm:px-8 sm:py-12"
+    >
       <img
         src="../assets/Gemini_Generated_Image_mstajimstajimsta.png"
         alt=""
         class="absolute inset-0 -z-20 h-full w-full object-cover object-center"
       />
-      <div class="absolute inset-0 -z-10 bg-gradient-to-b from-black/75 via-black/55 to-black/80"></div>
+      <div
+        class="absolute inset-0 -z-10 bg-gradient-to-b from-black/75 via-black/55 to-black/80"
+      ></div>
 
       <div class="mx-auto max-w-4xl">
         <p class="mb-6 text-xs font-bold uppercase tracking-[0.2em] text-white/80 sm:text-sm">
@@ -148,7 +173,9 @@ const faqs = [
         </h1>
 
         <p class="mx-auto mt-8 max-w-2xl text-lg text-white/75 sm:text-xl">
-          <span class="font-bold text-white">The Conversion Code</span> is a 6-week system that teaches your entire team the full sequence—from the first stranger who sees your ad to the moment they pay—installed live on your real campaigns, guaranteed.
+          <span class="font-bold text-white">The Conversion Code</span> is a 6-week system that
+          teaches your entire team the full sequence—from the first stranger who sees your ad to the
+          moment they pay—installed live on your real campaigns, guaranteed.
         </p>
 
         <div class="mt-4 flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -170,10 +197,14 @@ const faqs = [
 
     <!-- THE PROBLEM -->
     <section class="mx-auto max-w-5xl px-5 py-16 sm:px-8">
-      <div class="rounded-3xl border border-white/10 bg-gradient-to-br from-red-500/10 to-orange-500/5 p-8 sm:p-12">
+      <div
+        class="rounded-3xl border border-white/10 bg-gradient-to-br from-red-500/10 to-orange-500/5 p-8 sm:p-12"
+      >
         <h2 class="text-3xl font-bold sm:text-4xl">The Real Problem</h2>
         <p class="mt-4 text-lg text-white/80">
-          Attracting the right audience, earning their attention, and closing them are usually taught as separate skills, by separate people, at separate times. So your team ends up fluent in pieces of the sale — never the whole thing.
+          Attracting the right audience, earning their attention, and closing them are usually
+          taught as separate skills, by separate people, at separate times. So your team ends up
+          fluent in pieces of the sale — never the whole thing.
         </p>
 
         <div class="mt-8 grid gap-4 sm:grid-cols-2">
@@ -187,7 +218,9 @@ const faqs = [
           </div>
           <div class="rounded-xl border border-white/10 bg-white/[0.03] p-5">
             <p class="font-medium text-white">Offers that sound fine...</p>
-            <p class="mt-2 text-sm text-white/60">...but don't make anyone feel stupid saying no.</p>
+            <p class="mt-2 text-sm text-white/60">
+              ...but don't make anyone feel stupid saying no.
+            </p>
           </div>
           <div class="rounded-xl border border-white/10 bg-white/[0.03] p-5">
             <p class="font-medium text-white">Warm leads who hesitate once...</p>
@@ -196,7 +229,9 @@ const faqs = [
         </div>
 
         <p class="mt-8 text-white/70">
-          <span class="font-semibold text-white">One weak link breaks the whole chain.</span> You don't need more training. You need one training, in the right order — from the first stranger who sees your content, to the moment they pay.
+          <span class="font-semibold text-white">One weak link breaks the whole chain.</span> You
+          don't need more training. You need one training, in the right order — from the first
+          stranger who sees your content, to the moment they pay.
         </p>
       </div>
     </section>
@@ -207,7 +242,8 @@ const faqs = [
         <p class="text-sm font-bold uppercase tracking-wider text-purple-400">What You'll Learn</p>
         <h2 class="mt-3 text-3xl font-bold sm:text-4xl">6 Skills, Installed As One System</h2>
         <p class="mx-auto mt-4 max-w-2xl text-white/60">
-          Not a workshop. Not a keynote. A live installation into your team's real content, real ads, and real DM threads — until it's reflex, not theory.
+          Not a workshop. Not a keynote. A live installation into your team's real content, real
+          ads, and real DM threads — until it's reflex, not theory.
         </p>
       </div>
 
@@ -217,7 +253,9 @@ const faqs = [
           :key="skill.num"
           class="group rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition hover:border-purple-400/30 hover:bg-white/[0.05]"
         >
-          <span class="inline-block bg-gradient-to-r from-purple-400 to-fuchsia-400 bg-clip-text text-3xl font-bold text-transparent">
+          <span
+            class="inline-block bg-gradient-to-r from-purple-400 to-fuchsia-400 bg-clip-text text-3xl font-bold text-transparent"
+          >
             {{ skill.num }}
           </span>
           <h3 class="mt-4 text-lg font-semibold leading-snug">{{ skill.title }}</h3>
@@ -254,20 +292,37 @@ const faqs = [
 
     <!-- THE GUARANTEE -->
     <section class="mx-auto max-w-4xl px-5 py-16 sm:px-8">
-      <div class="rounded-3xl border border-emerald-500/30 bg-gradient-to-br from-emerald-500/10 to-teal-500/5 p-8 sm:p-12">
+      <div
+        class="rounded-3xl border border-emerald-500/30 bg-gradient-to-br from-emerald-500/10 to-teal-500/5 p-8 sm:p-12"
+      >
         <div class="flex items-start gap-4">
-          <div class="mt-1 h-12 w-12 flex-shrink-0 rounded-full bg-emerald-500/20 flex items-center justify-center">
-            <svg class="h-6 w-6 text-emerald-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <div
+            class="mt-1 h-12 w-12 flex-shrink-0 rounded-full bg-emerald-500/20 flex items-center justify-center"
+          >
+            <svg
+              class="h-6 w-6 text-emerald-400"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
             </svg>
           </div>
           <div class="flex-1">
             <h2 class="text-2xl font-bold sm:text-3xl">The Guarantee</h2>
             <p class="mt-4 text-white/80">
-              If your engagement-to-lead, DM-to-nurture, nurture-to-payment rate hasn't measurably improved within 30 days of Phase 2 — measured against your own baseline — we come back and reinforce it free, for up to 30 more days, until it moves.
+              If your engagement-to-lead, DM-to-nurture, nurture-to-payment rate hasn't measurably
+              improved within 30 days of Phase 2 — measured against your own baseline — we come back
+              and reinforce it free, for up to 30 more days, until it moves.
             </p>
             <p class="mt-4 font-semibold text-white">
-              We're not asking you to trust a promise. We're asking you to trust a number we agree on before we start.
+              We're not asking you to trust a promise. We're asking you to trust a number we agree
+              on before we start.
             </p>
           </div>
         </div>
@@ -277,10 +332,13 @@ const faqs = [
     <!-- RESULTS & SOCIAL PROOF -->
     <section class="mx-auto max-w-6xl px-5 py-16 sm:px-8">
       <div class="text-center">
-        <p class="text-sm font-bold uppercase tracking-wider text-purple-400">Before It Had A Name</p>
+        <p class="text-sm font-bold uppercase tracking-wider text-purple-400">
+          Before It Had A Name
+        </p>
         <h2 class="mt-3 text-3xl font-bold sm:text-4xl">Real Results From Real Teams</h2>
         <p class="mx-auto mt-4 max-w-2xl text-white/60">
-          These outcomes came from applying this system on actual campaigns. Not case studies. Deals.
+          These outcomes came from applying this system on actual campaigns. Not case studies.
+          Deals.
         </p>
       </div>
 
@@ -296,14 +354,15 @@ const faqs = [
       </div>
 
       <p class="mx-auto mt-10 max-w-2xl text-center text-xs text-white/40">
-        Client names withheld in line with confidentiality standards to direct response work — available on request during due diligence.
+        Client names withheld in line with confidentiality standards to direct response work —
+        available on request during due diligence.
       </p>
     </section>
 
     <!-- PRICING -->
-    <section id="pricing" class="mx-auto max-w-5xl px-5 py-16 sm:px-8">
+    <section id="pricing" class="mx-auto max-w-6xl px-5 py-16 sm:px-8">
       <div class="text-center">
-        <p class="text-sm font-bold uppercase tracking-wider text-purple-400">Investment</p>
+        <p class="text-sm font-bold uppercase tracking-wider text-purple-400">Pricing</p>
         <h2 class="mt-3 text-3xl font-bold sm:text-4xl">Priced by Team Size, Not Per Seat</h2>
         <p class="mx-auto mt-4 max-w-2xl text-white/60">
           Every online customer-facing and marketing team member trained under one engagement.
@@ -328,11 +387,39 @@ const faqs = [
             Most Popular
           </span>
 
-          <h3 class="text-lg font-semibold">{{ tier.team }}</h3>
-          <p class="mt-4 text-3xl font-bold">{{ tier.price }}</p>
-          <p class="mt-2 text-xs text-white/50">One-time investment</p>
+          <h3 class="text-lg font-semibold">
+            {{ tier.team }}
+          </h3>
 
-          <p class="mt-4 flex-1 text-sm text-white/70">{{ tier.desc }}</p>
+          <p class="mt-4 text-xs uppercase tracking-wider text-white/50">Phase 1</p>
+          <p class="mt-1 text-xl font-bold">
+            {{ tier.phase1 }}
+          </p>
+
+          <p class="mt-4 text-xs uppercase tracking-wider text-white/50">Phase 2</p>
+          <p class="mt-1 text-xl font-bold">
+            {{ tier.phase2 }}
+          </p>
+
+          <p class="mt-4 text-xs uppercase tracking-wider text-white/50">Phase 3</p>
+          <p class="mt-1 text-xl font-bold">
+            {{ tier.phase3 }}
+          </p>
+
+          <div class="my-5 border-t border-white/10"></div>
+
+          <p class="text-xs uppercase tracking-wider text-white/50">Total Investment</p>
+
+          <p
+            class="mt-1 text-3xl font-bold"
+            :class="tier.highlight ? 'text-fuchsia-300' : 'text-white'"
+          >
+            {{ tier.total }}
+          </p>
+
+          <p class="mt-2 flex-1 text-xs text-white/50">
+            Full-team implementation. Pricing is not per seat.
+          </p>
 
           <a
             href="#"
@@ -348,8 +435,13 @@ const faqs = [
         </div>
       </div>
 
-      <p class="mx-auto mt-10 max-w-2xl text-center text-xs text-white/40">
-        Your exact tier and total is confirmed on a short scoping call. We only take a limited number of installations per quarter, to keep every diagnostic and live session properly resourced.
+      <p class="mx-auto mt-10 max-w-3xl text-center text-sm leading-relaxed text-white/50">
+        Teams above 40 members, engagements involving multiple teams, or engagements spanning
+        multiple office locations will be quoted separately based on the required cohort structure.
+      </p>
+
+      <p class="mx-auto mt-3 max-w-3xl text-center text-sm font-medium text-white/70">
+        Pricing reflects a full-team implementation rather than per-seat licensing.
       </p>
     </section>
 
@@ -360,22 +452,41 @@ const faqs = [
 
         <div class="mt-6 space-y-5">
           <div class="flex items-start gap-3">
-            <svg class="mt-1 h-5 w-5 flex-shrink-0 text-emerald-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <svg
+              class="mt-1 h-5 w-5 flex-shrink-0 text-emerald-400"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
               <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
             </svg>
             <div>
               <p class="font-semibold text-white">Yes, if:</p>
-              <p class="mt-1 text-white/70">You already have an audience, ads, or content running — and too many of the right people are slipping through without ever becoming customers.</p>
+              <p class="mt-1 text-white/70">
+                You already have an audience, ads, or content running — and too many of the right
+                people are slipping through without ever becoming customers.
+              </p>
             </div>
           </div>
 
           <div class="flex items-start gap-3">
-            <svg class="mt-1 h-5 w-5 flex-shrink-0 text-orange-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <svg
+              class="mt-1 h-5 w-5 flex-shrink-0 text-orange-400"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
               <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
             <div>
               <p class="font-semibold text-white">Not yet, if:</p>
-              <p class="mt-1 text-white/70">You have no ads, content, or DM activity running at all right now. There's nothing yet for this system to work with. We'd need to build your funnel from the ground up first, which is a different engagement.</p>
+              <p class="mt-1 text-white/70">
+                You have no ads, content, or DM activity running at all right now. There's nothing
+                yet for this system to work with. We'd need to build your funnel from the ground up
+                first, which is a different engagement.
+              </p>
             </div>
           </div>
         </div>
@@ -386,7 +497,9 @@ const faqs = [
     <section id="faq" class="mx-auto max-w-3xl px-5 py-16 sm:px-8">
       <div class="text-center">
         <h2 class="text-3xl font-bold sm:text-4xl">Common Questions</h2>
-        <p class="mt-4 text-white/60">Already had some version of this before, or still wondering if it's right?</p>
+        <p class="mt-4 text-white/60">
+          Already had some version of this before, or still wondering if it's right?
+        </p>
       </div>
 
       <div class="mt-10 space-y-3">
@@ -416,7 +529,10 @@ const faqs = [
             leave-from-class="opacity-100 max-h-96"
             leave-to-class="opacity-0 max-h-0"
           >
-            <p v-if="activeFaq === i" class="mt-3 overflow-hidden text-sm leading-relaxed text-white/60">
+            <p
+              v-if="activeFaq === i"
+              class="mt-3 overflow-hidden text-sm leading-relaxed text-white/60"
+            >
               {{ faq.a }}
             </p>
           </transition>
@@ -430,7 +546,8 @@ const faqs = [
         Ready to Stop Leaving Money on the Table?
       </h2>
       <p class="mx-auto mt-5 max-w-xl text-lg text-white/60 sm:text-xl">
-        Your team did the hard part. They got the attention. They earned the DM. Now teach them how to close it.
+        Your team did the hard part. They got the attention. They earned the DM. Now teach them how
+        to close it.
       </p>
       <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
         <a
@@ -457,7 +574,9 @@ const faqs = [
         <div class="flex gap-5 text-xs text-white/50">
           <router-link to="/about" class="transition hover:text-white">About us</router-link>
           <router-link to="/product" class="transition hover:text-white">Product</router-link>
-          <router-link to="/how-it-works" class="transition hover:text-white">How It Works</router-link>
+          <router-link to="/how-it-works" class="transition hover:text-white"
+            >How It Works</router-link
+          >
           <router-link to="/pricing" class="transition hover:text-white">Pricing</router-link>
           <router-link to="/training" class="transition hover:text-white">Training</router-link>
           <router-link to="/faq" class="transition hover:text-white">FAQ</router-link>
