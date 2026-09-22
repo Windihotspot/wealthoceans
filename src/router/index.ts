@@ -79,6 +79,11 @@ const routes: RouteRecordRaw[] = [
     name: 'login',
     component: () => import('@/views/auth/LoginView.vue')
   },
+  {
+    path: '/bmfx',
+    name: 'bmfx',
+    component: () => import('@/views/BMFX.vue')
+  },
 
   // ==========================================
   // ONBOARDING

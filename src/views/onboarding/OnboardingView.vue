@@ -4,25 +4,27 @@
     :illustration-src="illustrationSrc"
     :headline="leftCopy.headline"
     :subtext="leftCopy.subtext"
-    :steps="3"
+    :steps="4"
     :active-step="onboardingStore.currentStep - 1"
   >
-    <!-- kept exactly like before: a slim progress bar + "Step X of 3" on the right panel -->
+    <!-- Progress bar + Step indicator -->
     <div class="d-flex align-center justify-space-between mb-2">
-      <span class="progress-label">Step {{ onboardingStore.currentStep }} of 3</span>
+      <span class="progress-label">Step {{ onboardingStore.currentStep }} of 4</span>
     </div>
     <v-progress-linear
-      :model-value="(onboardingStore.currentStep / 3) * 100"
+      :model-value="(onboardingStore.currentStep / 4) * 100"
       color="primary"
       height="6"
       rounded
       class="mb-8"
     />
 
+    <!-- Step transitions -->
     <transition name="fade" mode="out-in">
       <StepBusinessInfo v-if="onboardingStore.currentStep === 1" key="1" />
       <StepOfferDetails v-else-if="onboardingStore.currentStep === 2" key="2" />
-      <StepConfirm v-else key="3" />
+      <StepCommunicationStyle v-else-if="onboardingStore.currentStep === 3" key="3" />
+      <StepConfirm v-else key="4" />
     </transition>
   </AuthSplitLayout>
 </template>
@@ -33,6 +35,7 @@ import { useOnboardingStore } from '@/stores/onboarding.store'
 import AuthSplitLayout from '@/layouts/AuthSplitLayout.vue'
 import StepBusinessInfo from './steps/StepBusinessInfo.vue'
 import StepOfferDetails from './steps/StepOfferDetails.vue'
+import StepCommunicationStyle from './steps/StepcommunicationStyle.vue'
 import StepConfirm from './steps/StepConfirm.vue'
 
 import logoSrc from '@/assets/wealthoceans.jpeg'
@@ -40,7 +43,6 @@ import illustrationSrc from '@/assets/onboarding-illustration.jpg'
 
 const onboardingStore = useOnboardingStore()
 
-// left-panel copy changes with the step, same asset/layout throughout
 const leftCopy = computed(() => {
   switch (onboardingStore.currentStep) {
     case 1:
@@ -52,6 +54,11 @@ const leftCopy = computed(() => {
       return {
         headline: 'Teach LCI Your Offer',
         subtext: 'The more it knows about your offer and audience, the better it closes.'
+      }
+    case 3:
+      return {
+        headline: 'Teach LCI Your Voice',
+        subtext: 'We capture your communication style so LCI sounds like you.'
       }
     default:
       return {
@@ -70,10 +77,12 @@ const leftCopy = computed(() => {
   text-transform: uppercase;
   letter-spacing: 0.03em;
 }
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.2s ease;
 }
+
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
