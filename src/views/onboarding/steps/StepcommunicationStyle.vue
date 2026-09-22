@@ -1,95 +1,175 @@
 <template>
-  <div>
-    <h1 class="form-title">How Do You Communicate?</h1>
+  <div class="communication-form">
+    <h1 class="form-title">
+      How Do You Communicate?
+    </h1>
+
     <p class="form-subtitle mb-6">
-      LCI learns your tone and style to engage your leads the way you do. The more details, the better it closes.
+      LCI learns your tone and style to engage your leads the way you do.
+      The more details, the better it closes.
     </p>
 
-    <v-form @submit.prevent="handleNext" ref="formRef">
-      <!-- Communication Style Select -->
-      <div class="mb-4">
-        <label class="select-label">Communication Style</label>
+    <v-form
+      ref="formRef"
+      @submit.prevent="handleNext"
+    >
+      <!-- =========================================
+           COMMUNICATION STYLE
+           ========================================= -->
+
+      <div class="option-section">
+        <label class="select-label">
+          Communication Style
+        </label>
+
         <v-radio-group
           v-model="store.form.communication_style"
           :rules="[required]"
-          class="mb-2"
+          hide-details="auto"
+          class="option-group"
         >
           <v-radio
             v-for="option in communicationStyleOptions"
             :key="option"
             :label="option"
             :value="option"
-            class="mb-2"
+            class="custom-radio"
           />
         </v-radio-group>
       </div>
 
-      <!-- Tone Preference Select -->
-      <div class="mb-4">
-        <label class="select-label">Preferred Tone</label>
+      <!-- =========================================
+           PREFERRED TONE
+           ========================================= -->
+
+      <div class="option-section">
+        <label class="select-label">
+          Preferred Tone
+        </label>
+
         <v-radio-group
           v-model="store.form.tone_preference"
           :rules="[required]"
-          class="mb-2"
+          hide-details="auto"
+          class="option-group"
         >
           <v-radio
             v-for="option in toneOptions"
             :key="option"
             :label="option"
             :value="option"
-            class="mb-2"
+            class="custom-radio"
           />
         </v-radio-group>
       </div>
 
-      <!-- Key Phrases -->
-      <v-textarea
-        v-model="store.form.key_phrases"
-        v-bind="fieldProps"
-        placeholder="e.g., 'Let's make it rain', 'Game-changing solutions', 'Scaling fast'"
-        label="Key Phrases & Terminology (Optional)"
-        rows="2"
-        prepend-inner-icon="fa-solid fa-quote-left"
-        class="mb-3"
-        hint="Phrases you commonly use in conversations"
-        persistent-hint
-      />
+      <!-- =========================================
+           KEY PHRASES
+           ========================================= -->
 
-      <!-- Pitch Example -->
-      <v-textarea
-        v-model="store.form.pitch_example"
-        v-bind="fieldProps"
-        placeholder="Describe how you typically pitch your offer to prospects..."
-        label="How You Pitch (Example)"
-        rows="3"
-        prepend-inner-icon="fa-solid fa-microphone"
-        :rules="[required]"
-        class="mb-3"
-        hint="1-2 paragraphs showing your natural pitch style"
-        persistent-hint
-      />
+      <div class="field-wrapper">
+        <v-textarea
+          v-model="store.form.key_phrases"
+          variant="outlined"
+          label="Key Phrases & Terminology (Optional)"
+          placeholder="e.g., 'Let's make it rain', 'Game-changing solutions', 'Scaling fast'"
+          rows="2"
+          prepend-inner-icon="mdi-format-quote-close"
+          class="custom-field"
+          density="comfortable"
+          auto-grow
+          hint="Phrases you commonly use in conversations"
+          persistent-hint
+        />
+      </div>
 
-      <!-- Unique Selling Language -->
-      <v-textarea
-        v-model="store.form.unique_selling_language"
-        v-bind="fieldProps"
-        placeholder="e.g., 'We don't sell software, we sell freedom'"
-        label="Your Unique Selling Language (Optional)"
-        rows="2"
-        prepend-inner-icon="fa-solid fa-sparkles"
-        class="mb-3"
-        hint="How you uniquely describe your offer"
-        persistent-hint
-      />
+      <!-- =========================================
+           PITCH EXAMPLE
+           ========================================= -->
 
-      <v-alert v-if="store.error" type="error" variant="tonal" density="compact" class="mb-4">
+      <div class="field-wrapper">
+        <v-textarea
+          v-model="store.form.pitch_example"
+          variant="outlined"
+          label="How You Pitch (Example)"
+          placeholder="Describe how you typically pitch your offer to prospects..."
+          rows="3"
+          prepend-inner-icon="mdi-microphone-outline"
+          :rules="[required]"
+          class="custom-field"
+          density="comfortable"
+          auto-grow
+          hint="1-2 paragraphs showing your natural pitch style"
+          persistent-hint
+        />
+      </div>
+
+      <!-- =========================================
+           UNIQUE SELLING LANGUAGE
+           ========================================= -->
+
+      <div class="field-wrapper">
+        <v-textarea
+          v-model="store.form.unique_selling_language"
+          variant="outlined"
+          label="Your Unique Selling Language (Optional)"
+          placeholder="e.g., 'We don't sell software, we sell freedom'"
+          rows="2"
+          prepend-inner-icon="mdi-auto-fix"
+          class="custom-field"
+          density="comfortable"
+          auto-grow
+          hint="How you uniquely describe your offer"
+          persistent-hint
+        />
+      </div>
+
+      <!-- =========================================
+           ERROR
+           ========================================= -->
+
+      <v-alert
+        v-if="store.error"
+        type="error"
+        variant="tonal"
+        density="compact"
+        class="error-alert"
+      >
         {{ store.error }}
       </v-alert>
 
-      <div class="d-flex ga-3">
-        <v-btn variant="text" class="text-none" @click="store.goToStep(2)">Back</v-btn>
-        <v-btn type="submit" block size="large" class="register-btn" :loading="store.isSubmitting">
+      <!-- =========================================
+           NAVIGATION
+           ========================================= -->
+
+      <div class="navigation-buttons">
+        <v-btn
+          type="button"
+          variant="outlined"
+          class="back-btn"
+          :disabled="store.isSubmitting"
+          @click="store.goToStep(2)"
+        >
+          <v-icon
+            icon="mdi-arrow-left"
+            class="mr-2"
+          />
+
+          Back
+        </v-btn>
+
+        <v-btn
+          type="submit"
+          class="continue-btn"
+          :loading="store.isSubmitting"
+          :disabled="store.isSubmitting"
+        >
           Continue
+
+          <v-icon
+            icon="mdi-arrow-right"
+            class="ml-2"
+          />
         </v-btn>
       </div>
     </v-form>
@@ -101,25 +181,32 @@ import { ref } from 'vue'
 import { useOnboardingStore } from '@/stores/onboarding.store'
 
 const store = useOnboardingStore()
+
 const formRef = ref()
 
-const communicationStyleOptions = ['Formal & Professional', 'Casual & Conversational', 'Energetic & Playful', 'Direct & No-Nonsense']
-const toneOptions = ['Professional', 'Friendly', 'Enthusiastic', 'Empathetic', 'Authoritative']
+const communicationStyleOptions = [
+  'Formal & Professional',
+  'Casual & Conversational',
+  'Energetic & Playful',
+  'Direct & No-Nonsense',
+]
 
-const fieldProps = {
-  variant: 'solo-filled' as const,
-  flat: true,
-  rounded: 'lg' as const,
-  bgColor: '#F5F5F9',
-  density: 'comfortable' as const,
-  hideDetails: false as const
-}
+const toneOptions = [
+  'Professional',
+  'Friendly',
+  'Enthusiastic',
+  'Empathetic',
+  'Authoritative',
+]
 
-const required = (v: string) => !!v || 'Required'
+const required = (v: string) =>
+  !!v || 'Required'
 
 async function handleNext() {
   const { valid } = await formRef.value.validate()
+
   if (!valid) return
+
   try {
     await store.submitCommunicationStyle()
   } catch {
@@ -128,48 +215,318 @@ async function handleNext() {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.communication-form {
+  width: 100%;
+}
+
+/* =========================================
+   HEADER
+   ========================================= */
+
 .form-title {
+  margin: 0;
   font-size: 20px;
+  line-height: 1.4;
   font-weight: 700;
   color: #111827;
 }
 
 .form-subtitle {
+  margin-top: 6px;
   font-size: 13px;
-  color: #6b7280;
   line-height: 1.5;
+  color: #6b7280;
+}
+
+/* =========================================
+   RADIO SECTIONS
+   ========================================= */
+
+.option-section {
+  margin-bottom: 24px;
 }
 
 .select-label {
   display: block;
-  font-size: 12px;
+  margin-bottom: 10px;
+
+  font-size: 13px;
   font-weight: 600;
   color: #374151;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  margin-bottom: 10px;
 }
 
-:deep(.v-radio-group) {
-  gap: 12px;
+/*
+ * Radio group
+ */
+.option-group {
+  margin: 0;
 }
 
-:deep(.v-radio) {
+/*
+ * Individual radio
+ */
+:deep(.custom-radio) {
+  min-height: 40px;
+  margin-bottom: 6px;
+  padding: 4px 8px;
+
+  border: 1.5px solid #b8bec8;
+  border-radius: 9px;
+
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+/*
+ * Radio label
+ */
+:deep(.custom-radio .v-label) {
   font-size: 13px;
   color: #374151;
+  opacity: 1;
 }
 
-.register-btn {
+/*
+ * Radio control
+ */
+:deep(.custom-radio .v-selection-control__wrapper) {
+  margin-right: 4px;
+}
+
+/*
+ * Selected option
+ */
+:deep(
+  .custom-radio:has(.v-selection-control--dirty)
+) {
+  border-color: #6c4bf4;
+  background: #faf9ff;
+}
+
+:deep(
+  .custom-radio:has(.v-selection-control--dirty) .v-label
+) {
+  color: #5b3de0;
+  font-weight: 500;
+}
+
+/* Purple radio */
+:deep(
+  .custom-radio .v-selection-control--dirty .v-icon
+) {
+  color: #6c4bf4;
+}
+
+/* =========================================
+   TEXT FIELDS
+   ========================================= */
+
+.field-wrapper {
+  margin-bottom: 22px;
+}
+
+.custom-field {
+  :deep(.v-field) {
+    min-height: 52px;
+    border-radius: 10px;
+    background: #ffffff;
+  }
+
+  :deep(.v-field__input) {
+    padding-top: 12px;
+    padding-bottom: 12px;
+
+    font-size: 0.95rem;
+    color: #1f2937;
+  }
+
+  /*
+   * Textarea sizing
+   */
+  :deep(.v-textarea .v-field__input) {
+    min-height: 76px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  /*
+   * MDI icon
+   */
+  :deep(.v-field__prepend-inner) {
+    padding-right: 10px;
+    color: #6b7280;
+  }
+
+  :deep(.v-field__prepend-inner .v-icon) {
+    font-size: 20px;
+  }
+
+  /*
+   * Strong visible border
+   */
+  :deep(.v-field__outline) {
+    --v-field-border-width: 1.5px;
+    --v-field-border-opacity: 1;
+
+    color: #b8bec8 !important;
+    opacity: 1 !important;
+  }
+
+  :deep(.v-field__outline__start),
+  :deep(.v-field__outline__end),
+  :deep(.v-field__outline__notch) {
+    border-color: #b8bec8 !important;
+    opacity: 1 !important;
+  }
+
+  /*
+   * Label
+   */
+  :deep(.v-field__label) {
+    color: #4b5563;
+    font-size: 0.9rem;
+  }
+
+  /*
+   * Hint
+   */
+  :deep(.v-messages) {
+    padding-top: 4px;
+  }
+
+  :deep(.v-messages__message) {
+    font-size: 11px;
+    color: #9ca3af;
+  }
+}
+
+/* =========================================
+   FIELD FOCUS
+   ========================================= */
+
+:deep(.v-field--focused .v-field__outline) {
+  --v-field-border-width: 1.5px;
+
+  color: #6c4bf4 !important;
+  opacity: 1 !important;
+}
+
+:deep(.v-field--focused .v-field__outline__start),
+:deep(.v-field--focused .v-field__outline__end),
+:deep(.v-field--focused .v-field__outline__notch) {
+  border-color: #6c4bf4 !important;
+}
+
+:deep(.v-field--focused .v-field__label) {
+  color: #6c4bf4;
+}
+
+/* =========================================
+   ERROR
+   ========================================= */
+
+.error-alert {
+  margin-top: 4px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+/* =========================================
+   NAVIGATION BUTTONS
+   ========================================= */
+
+.navigation-buttons {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.back-btn,
+.continue-btn {
+  flex: 1 1 0;
+  width: 50%;
+  height: 48px !important;
+
+  border-radius: 10px !important;
+
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* Back */
+.back-btn {
+  border: 1.5px solid #b8bec8 !important;
+  color: #374151 !important;
+  background: #ffffff !important;
+}
+
+.back-btn:hover:not(:disabled) {
+  border-color: #6c4bf4 !important;
+  color: #6c4bf4 !important;
+  background: #faf9ff !important;
+}
+
+/* Continue */
+.continue-btn {
+  border: 1.5px solid #6c4bf4 !important;
   background: #6c4bf4 !important;
   color: #ffffff !important;
-  border-radius: 12px !important;
-  text-transform: none;
-  font-weight: 600;
-  height: 48px !important;
 }
 
-.ga-3 {
-  gap: 12px;
+.continue-btn:hover:not(:disabled) {
+  border-color: #5b3de0 !important;
+  background: #5b3de0 !important;
+}
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+  .form-title {
+    font-size: 18px;
+  }
+
+  .form-subtitle {
+    font-size: 13px;
+  }
+
+  .option-section {
+    margin-bottom: 20px;
+  }
+
+  .field-wrapper {
+    margin-bottom: 18px;
+  }
+
+  /*
+   * Stack navigation buttons
+   */
+  .navigation-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .back-btn,
+  .continue-btn {
+    width: 100%;
+    flex: none;
+  }
+
+  /*
+   * Continue first on mobile
+   */
+  .continue-btn {
+    order: 1;
+  }
+
+  .back-btn {
+    order: 2;
+  }
 }
 </style>
