@@ -12,13 +12,36 @@ const AuthService = {
       email,
       password,
       options: {
-        data: { full_name }
+        data: {
+          full_name
+        }
       }
     })
+
     if (error) throw error
+
+    if (!data.user) {
+      throw new Error('Account was not created')
+    }
+
+    if (!data.session) {
+      throw new Error('Account created, but no authenticated session was returned.')
+    }
+
+    const { error: userError } = await supabase.from('users').insert({
+      id: data.user.id,
+      email: data.user.email,
+      name: full_name,
+      role: 'marketer'
+    })
+
+    if (userError) {
+      console.error('[auth] Failed to create application user:', userError)
+      throw userError
+    }
+
     return data
   },
-
   async login({ email, password }: LoginPayload) {
     const { data, error } = await supabase.auth.signInWithPassword({
       email,

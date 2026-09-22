@@ -33,19 +33,24 @@ export const useAuthStore = defineStore('auth', {
 
   actions: {
     async signUp(payload: SignUpPayload) {
-      this.isLoading = true
-      this.error = null
-      try {
-        await AuthService.signUp(payload)
-        // If email confirmation is required, there's no session yet.
-        // The signup view should tell the user to check their inbox.
-      } catch (err: any) {
-        this.error = err.message ?? 'Sign up failed'
-        throw err
-      } finally {
-        this.isLoading = false
-      }
-    },
+  this.isLoading = true
+  this.error = null
+
+  try {
+    const data = await AuthService.signUp(payload)
+
+    console.log('[auth] Signup successful')
+    console.log('[auth] User ID:', data.user?.id)
+    console.log('[auth] Session exists:', !!data.session)
+
+    return data
+  } catch (err: any) {
+    this.error = err.message ?? 'Sign up failed'
+    throw err
+  } finally {
+    this.isLoading = false
+  }
+},
 
     async login(payload: LoginPayload) {
       this.isLoading = true

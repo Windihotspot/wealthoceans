@@ -147,9 +147,48 @@ const mustAgree = (v: boolean) => v || 'You must agree to continue'
 
 
 async function handleSubmit() {
-  router.push('/onboarding')
-}
+  signupSuccess.value = false
+  authStore.error = null
 
+  const { valid } = await formRef.value.validate()
+
+  if (!valid) {
+    return
+  }
+
+  if (!agreedToTerms.value) {
+    authStore.error = 'You must agree to the Terms & Conditions'
+    return
+  }
+
+  try {
+    const data = await authStore.signUp({
+      email: email.value.trim().toLowerCase(),
+      password: password.value,
+      full_name: fullName.value.trim()
+    })
+
+    console.log('[register] User created:', data?.user?.id)
+    console.log('[register] Session exists:', !!data?.session)
+
+    if (!data?.user) {
+      throw new Error('Account was not created')
+    }
+
+    if (!data?.session) {
+      throw new Error(
+        'Account created, but no authenticated session was returned. Check Supabase email confirmation settings.'
+      )
+    }
+
+    // User is now authenticated
+    await authStore.fetchCurrentUser()
+
+    router.push('/onboarding')
+  } catch (err: any) {
+    console.error('[register] Signup failed:', err)
+  }
+}
 async function handleGoogleSignup() {
   await supabase.auth.signInWithOAuth({
     provider: 'google',
