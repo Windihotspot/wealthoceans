@@ -52,7 +52,7 @@
       </div>
 
       <!-- Workspace -->
-      <div class="px-5 pt-6 pb-3">
+      <!-- <div class="px-5 pt-6 pb-3">
         <div
           class="flex items-center gap-3 p-3 rounded-xl bg-purple-50 border border-purple-100"
         >
@@ -74,7 +74,7 @@
 
           <i class="fa-solid fa-chevron-down text-[10px] text-gray-400"></i>
         </div>
-      </div>
+      </div> -->
 
       <!-- Navigation -->
       <nav class="flex-1 px-4 py-3 overflow-y-auto">
