@@ -141,6 +141,13 @@ const faqs = [
     a: 'No. Chatbots follow scripts and break the moment a real human goes off-script. LCI understands intent, adapts mid-conversation, and closes \u2014 the way a trained salesperson would.'
   }
 ]
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+function goToSignup() {
+  router.push('/signup')
+}
 </script>
 
 <template>
@@ -196,6 +203,7 @@ const faqs = [
 
         <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <button
+            @click="goToSignup"
             type="button"
             class="w-full rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500 px-8 py-4 text-sm font-semibold text-white shadow-xl shadow-purple-500/30 transition hover:shadow-purple-500/50 sm:w-auto"
           >
@@ -511,19 +519,29 @@ const faqs = [
           </div>
 
           <!-- CTA -->
-          <router-link
-            to="/pricing"
-            class="mt-6 block w-full rounded-full px-6 py-3.5 text-center text-sm font-semibold transition-all duration-200"
-            :class="
-              plan.highlight
-                ? 'bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40'
-                : plan.enterprise
-                  ? 'border border-white/15 bg-white/5 text-white hover:bg-white/10'
-                  : 'border border-white/15 bg-white/5 text-white hover:bg-white/10'
-            "
-          >
-            {{ plan.enterprise ? 'Talk to Sales →' : 'Get Started' }}
-          </router-link>
+          <!-- CTA -->
+<a
+  v-if="plan.enterprise"
+  href="https://wa.me/2348165745741?text=Hello%2C%20I%27d%20like%20to%20talk%20to%20sales%20about%20LCI."
+  target="_blank"
+  rel="noopener noreferrer"
+  class="mt-6 block w-full rounded-full border border-white/15 bg-white/5 px-6 py-3.5 text-center text-sm font-semibold text-white transition-all duration-200 hover:bg-white/10"
+>
+  Talk to Sales →
+</a>
+
+<router-link
+  v-else
+  to="/signup"
+  class="mt-6 block w-full rounded-full px-6 py-3.5 text-center text-sm font-semibold transition-all duration-200"
+  :class="
+    plan.highlight
+      ? 'bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40'
+      : 'border border-white/15 bg-white/5 text-white hover:bg-white/10'
+  "
+>
+  Get Started
+</router-link>
         </div>
       </div>
 
