@@ -26,7 +26,7 @@ interface OnboardingState {
 
 export const useOnboardingStore = defineStore('onboarding', {
   state: (): OnboardingState => ({
-    currentStep: 3,
+    currentStep: 1,
     isSubmitting: false,
     error: null,
 
