@@ -1,33 +1,53 @@
-// supabase/functions/onboarding-complete/index.ts
-
 import {
   handleCors,
   jsonResponse,
-  errorResponse,
+  errorResponse
 } from '../_shared/cors.ts'
 
 import {
   getAdminClient,
-  getAuthenticatedUser,
+  getAuthenticatedUser
 } from '../_shared/supabaseAdmin.ts'
 
 import {
-  sendTermiiEmail,
+  sendTermiiEmail
 } from '../_shared/termii.ts'
 
 Deno.serve(async (req: Request) => {
+  // --------------------------------------------------
+  // CORS
+  // --------------------------------------------------
+
   const cors = handleCors(req)
 
   if (cors) return cors
 
+  // --------------------------------------------------
+  // Validate method
+  // --------------------------------------------------
+
   if (req.method !== 'POST') {
-    return errorResponse('Method not allowed', 405)
+    return errorResponse(
+      'Method not allowed',
+      405,
+      null,
+      req
+    )
   }
+
+  // --------------------------------------------------
+  // Authenticate user
+  // --------------------------------------------------
 
   const user = await getAuthenticatedUser(req)
 
   if (!user) {
-    return errorResponse('Unauthorized', 401)
+    return errorResponse(
+      'Unauthorized',
+      401,
+      null,
+      req
+    )
   }
 
   const admin = getAdminClient()
@@ -36,7 +56,10 @@ Deno.serve(async (req: Request) => {
   // Get user's organization
   // --------------------------------------------------
 
-  const { data: userRow, error: userErr } = await admin
+  const {
+    data: userRow,
+    error: userErr
+  } = await admin
     .from('users')
     .select('organization_id')
     .eq('id', user.id)
@@ -45,7 +68,9 @@ Deno.serve(async (req: Request) => {
   if (userErr || !userRow?.organization_id) {
     return errorResponse(
       'No organization found for this user',
-      400
+      400,
+      userErr?.message ?? null,
+      req
     )
   }
 
@@ -53,7 +78,10 @@ Deno.serve(async (req: Request) => {
   // Load organization profile
   // --------------------------------------------------
 
-  const { data: org, error: orgErr } = await admin
+  const {
+    data: org,
+    error: orgErr
+  } = await admin
     .from('organizations')
     .select(`
       id,
@@ -72,7 +100,8 @@ Deno.serve(async (req: Request) => {
     return errorResponse(
       'Failed to load organization',
       500,
-      orgErr.message
+      orgErr.message,
+      req
     )
   }
 
@@ -105,7 +134,9 @@ Deno.serve(async (req: Request) => {
   if (missingFields.length > 0) {
     return errorResponse(
       `Incomplete profile. Missing: ${missingFields.join(', ')}. Complete all steps first.`,
-      400
+      400,
+      null,
+      req
     )
   }
 
@@ -113,22 +144,31 @@ Deno.serve(async (req: Request) => {
   // Mark onboarding as complete
   // --------------------------------------------------
 
-  const { data: updatedOrg, error: updateErr } = await admin
+  const {
+    data: updatedOrg,
+    error: updateErr
+  } = await admin
     .from('organizations')
     .update({
       onboarding_step: 5,
       onboarding_completed: true,
-      onboarding_completed_at: new Date().toISOString(),
+      onboarding_completed_at: new Date().toISOString()
     })
     .eq('id', userRow.organization_id)
     .select()
     .single()
 
   if (updateErr) {
+    console.error(
+      '[onboarding-complete] Failed to update organization:',
+      updateErr
+    )
+
     return errorResponse(
       'Failed to complete onboarding',
       500,
-      updateErr.message
+      updateErr.message,
+      req
     )
   }
 
@@ -201,20 +241,14 @@ Deno.serve(async (req: Request) => {
       subject: 'Welcome to Wealth Oceans Technologies',
       templateId,
       emailConfigurationId,
-
       variables: {
         first_name: firstName,
-
         logo_url: logoUrl,
-
         banner_url: bannerUrl,
-
         dashboard_url: appUrl,
-
         support_email: supportEmail,
-
-        year: new Date().getFullYear(),
-      },
+        year: new Date().getFullYear()
+      }
     })
 
     emailSent = true
@@ -226,7 +260,7 @@ Deno.serve(async (req: Request) => {
         : 'Unknown email error'
 
     console.error(
-      'Failed to send onboarding email:',
+      '[onboarding-complete] Failed to send onboarding email:',
       emailError
     )
   }
@@ -235,14 +269,16 @@ Deno.serve(async (req: Request) => {
   // Return result
   // --------------------------------------------------
 
-  return jsonResponse({
-    organization: updatedOrg,
-
-    onboarding_completed: true,
-
-    email: {
-      sent: emailSent,
-      error: emailError,
+  return jsonResponse(
+    {
+      organization: updatedOrg,
+      onboarding_completed: true,
+      email: {
+        sent: emailSent,
+        error: emailError
+      }
     },
-  })
+    200,
+    req
+  )
 })

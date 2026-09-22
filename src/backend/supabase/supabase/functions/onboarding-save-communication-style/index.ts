@@ -1,9 +1,13 @@
-// supabase/functions/onboarding-save-communication-style/index.ts
-// POST /functions/v1/onboarding-save-communication-style
+import {
+  handleCors,
+  jsonResponse,
+  errorResponse
+} from '../_shared/cors.ts'
 
-
-import { handleCors, jsonResponse, errorResponse } from '../_shared/cors.ts'
-import { getAdminClient, getAuthenticatedUser } from '../_shared/supabaseAdmin.ts'
+import {
+  getAdminClient,
+  getAuthenticatedUser
+} from '../_shared/supabaseAdmin.ts'
 
 interface SaveCommunicationStylePayload {
   communication_style: string
@@ -14,21 +18,45 @@ interface SaveCommunicationStylePayload {
 }
 
 Deno.serve(async (req: Request) => {
+  // Handle CORS preflight
   const cors = handleCors(req)
+
   if (cors) return cors
 
+  // Only POST is allowed
   if (req.method !== 'POST') {
-    return errorResponse('Method not allowed', 405)
+    return errorResponse(
+      'Method not allowed',
+      405,
+      null,
+      req
+    )
   }
 
+  // Authenticate user
   const user = await getAuthenticatedUser(req)
-  if (!user) return errorResponse('Unauthorized', 401)
 
+  if (!user) {
+    return errorResponse(
+      'Unauthorized',
+      401,
+      null,
+      req
+    )
+  }
+
+  // Parse request body
   let payload: SaveCommunicationStylePayload
+
   try {
     payload = await req.json()
   } catch {
-    return errorResponse('Invalid JSON body', 400)
+    return errorResponse(
+      'Invalid JSON body',
+      400,
+      null,
+      req
+    )
   }
 
   const {
@@ -40,54 +68,91 @@ Deno.serve(async (req: Request) => {
   } = payload
 
   // Validate required fields
-  if (!communication_style || !tone_preference || !pitch_example) {
+  if (
+    !communication_style ||
+    !tone_preference ||
+    !pitch_example
+  ) {
     return errorResponse(
       'communication_style, tone_preference, and pitch_example are required',
-      422
+      422,
+      null,
+      req
     )
   }
 
   const admin = getAdminClient()
 
   // Verify user owns an organization
-  const { data: userRow, error: userErr } = await admin
+  const {
+    data: userRow,
+    error: userErr
+  } = await admin
     .from('users')
     .select('organization_id, is_owner')
     .eq('id', user.id)
     .single()
 
   if (userErr || !userRow?.organization_id) {
-    return errorResponse('No organization found for this user', 400)
+    return errorResponse(
+      'No organization found for this user',
+      400,
+      userErr?.message ?? null,
+      req
+    )
   }
 
+  // Verify organization owner
   if (!userRow.is_owner) {
-    return errorResponse('Only the organization owner can complete onboarding', 403)
+    return errorResponse(
+      'Only the organization owner can complete onboarding',
+      403,
+      null,
+      req
+    )
   }
 
-  // Verify we're at step 3
-  const { data: orgCheck, error: checkErr } = await admin
+  // Verify onboarding state
+  const {
+    data: orgCheck,
+    error: checkErr
+  } = await admin
     .from('organizations')
     .select('onboarding_step, onboarding_completed')
     .eq('id', userRow.organization_id)
     .single()
 
   if (checkErr || !orgCheck) {
-    return errorResponse('Organization not found', 400)
+    return errorResponse(
+      'Organization not found',
+      400,
+      checkErr?.message ?? null,
+      req
+    )
   }
 
   if (orgCheck.onboarding_completed) {
-    return errorResponse('Onboarding already completed', 409)
+    return errorResponse(
+      'Onboarding already completed',
+      409,
+      null,
+      req
+    )
   }
 
   // Save communication profile
-  const { data: org, error: orgErr } = await admin
+  const {
+    data: org,
+    error: orgErr
+  } = await admin
     .from('organizations')
     .update({
       communication_style: communication_style.trim(),
       tone_preference: tone_preference.trim(),
       key_phrases: key_phrases?.trim() || null,
       pitch_example: pitch_example.trim(),
-      unique_selling_language: unique_selling_language?.trim() || null,
+      unique_selling_language:
+        unique_selling_language?.trim() || null,
       onboarding_step: 4
     })
     .eq('id', userRow.organization_id)
@@ -95,8 +160,25 @@ Deno.serve(async (req: Request) => {
     .single()
 
   if (orgErr) {
-    return errorResponse('Failed to save communication profile', 500, orgErr.message)
+    console.error(
+      '[onboarding-save-communication-style] Failed to save:',
+      orgErr
+    )
+
+    return errorResponse(
+      'Failed to save communication profile',
+      500,
+      orgErr.message,
+      req
+    )
   }
 
-  return jsonResponse({ organization: org })
+  // Success
+  return jsonResponse(
+    {
+      organization: org
+    },
+    200,
+    req
+  )
 })
