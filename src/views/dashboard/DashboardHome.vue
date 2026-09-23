@@ -550,7 +550,7 @@ const navigation = [
     icon: 'fa-solid fa-users',
   },
   {
-    name: 'Sales Agent',
+    name: 'Sales Closer',
     icon: 'fa-solid fa-wand-magic-sparkles',
     badge: 'AI',
   },
@@ -607,7 +607,7 @@ const features = [
     icon: 'fa-solid fa-bullseye',
   },
   {
-    title: 'AI Sales Agent',
+    title: 'AI Sales Closer',
     description: 'Qualify & close',
     icon: 'fa-solid fa-wand-magic-sparkles',
   },

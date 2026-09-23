@@ -47,7 +47,7 @@ const leftCopy = computed(() => {
   switch (onboardingStore.currentStep) {
     case 1:
       return {
-        headline: 'Set Up Your AI Sales Agent',
+        headline: 'Set Up Your AI Sales Closer',
         subtext: "Tell us who you are — we'll have LCI live in under 5 minutes."
       }
     case 2:

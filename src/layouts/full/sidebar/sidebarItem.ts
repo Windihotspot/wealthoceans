@@ -20,8 +20,8 @@ const sidebarItems = [
     icon: 'mdi-account-group', // Users icon
   },
   {
-    title: 'Agents',
-    path: '/agents',
+    title: 'Closers',
+    path: '/Closers',
     icon: 'mdi-account-tie', // User with tie icon
   },
   {

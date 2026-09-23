@@ -5,7 +5,7 @@
     </h1>
 
     <p class="form-subtitle mb-6">
-      LCI's Market Intelligence Engine uses this to script your AI Sales Agent.
+      LCI's Market Intelligence Engine uses this to script your AI Sales Closer.
     </p>
 
     <v-form

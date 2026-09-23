@@ -2,7 +2,7 @@
   <v-card class="pa-6">
     <h2 class="text-h6 font-weight-bold mb-1">What are you selling, and to whom?</h2>
     <p class="text-body-2 text-medium-emphasis mb-6">
-      LCI's Market Intelligence Engine uses this to script your AI Sales Agent.
+      LCI's Market Intelligence Engine uses this to script your AI Sales Closer.
     </p>
 
     <v-form @submit.prevent="handleNext" ref="formRef">

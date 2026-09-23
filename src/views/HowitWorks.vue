@@ -78,7 +78,7 @@ const plans = [
     features: [
       'Up to 3 channels (pick any 3)',
       'Up to 2,500 active conversations/month',
-      'Full AI Sales Agent (objections, closing, payment links)',
+      'Full AI Sales Closer (objections, closing, payment links)',
       'Omnichannel identity tracking',
       'Offer & funnel generator',
       'Priority chat + email support'
@@ -93,7 +93,7 @@ const plans = [
     features: [
       'All channels, fully connected',
       'Up to 10,000 active conversations/month',
-      'Full AI Sales Agent + High-Ticket Closing System',
+      'Full AI Sales Closer + High-Ticket Closing System',
       'AI Email Marketing & Nurture (ActiveCampaign / Systeme.io / Mailchimp)',
       'Advanced analytics & drop-off points',
       'Dedicated onboarding + priority support'

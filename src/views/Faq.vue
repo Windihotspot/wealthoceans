@@ -29,7 +29,7 @@ const integrations = [
   },
   {
     step: '03',
-    title: 'AI Sales Agent \u2014 The Core Engine',
+    title: 'AI Sales Closer \u2014 The Core Engine',
     desc: 'Asks the qualifying questions a trained closer would ask, detects real intent, handles objections with no dead ends, and sends payment links to close the sale.'
   },
   {
@@ -79,7 +79,7 @@ const plans = [
     features: [
       'Up to 3 channels (pick any 3)',
       'Up to 2,500 active conversations/month',
-      'Full AI Sales Agent (objections, closing, payment links)',
+      'Full AI Sales Closer (objections, closing, payment links)',
       'Omnichannel identity tracking',
       'Offer & funnel generator',
       'Priority chat + email support'
@@ -94,7 +94,7 @@ const plans = [
     features: [
       'All channels, fully connected',
       'Up to 10,000 active conversations/month',
-      'Full AI Sales Agent + High-Ticket Closing System',
+      'Full AI Sales Closer + High-Ticket Closing System',
       'AI Email Marketing & Nurture (ActiveCampaign / Systeme.io / Mailchimp)',
       'Advanced analytics & drop-off points',
       'Dedicated onboarding + priority support'

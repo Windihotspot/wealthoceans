@@ -96,7 +96,7 @@
     :loading="store.isSubmitting"
     @click="handleFinish"
   >
-    Activate My AI Sales Agent
+    Activate My AI Sales Closer
   </v-btn>
 </div>
   </v-card>
