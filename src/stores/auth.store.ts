@@ -86,6 +86,8 @@ export const useAuthStore = defineStore('auth', {
         this.organization = organization
         this.onboarding = onboarding
         this.isAuthenticated = true
+        console.log('[auth] User:', user)
+        console.log('organization:', organization)
       } catch (err) {
         this.isAuthenticated = false
         throw err

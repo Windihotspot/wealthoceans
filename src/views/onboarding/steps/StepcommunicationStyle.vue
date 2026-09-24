@@ -84,24 +84,34 @@
       </div>
 
       <!-- =========================================
-           PITCH EXAMPLE
+           PITCH EXAMPLE (WITH SPEECH RECORDING)
            ========================================= -->
 
       <div class="field-wrapper">
-        <v-textarea
+        <label class="field-label">How You Pitch (Example)</label>
+
+        <PitchCapture
           v-model="store.form.pitch_example"
-          variant="outlined"
-          label="How You Pitch (Example)"
-          placeholder="Describe how you typically pitch your offer to prospects..."
-          rows="3"
-          prepend-inner-icon="mdi-microphone-outline"
-          :rules="[required]"
-          class="custom-field"
-          density="comfortable"
-          auto-grow
-          hint="1-2 paragraphs showing your natural pitch style"
-          persistent-hint
+          @update:model-value="(val) => store.form.pitch_example = val"
+          @update:audio-url="(url) => store.form.pitch_audio_url = url"
         />
+
+        <!-- Error message if empty -->
+        <div 
+          v-if="showPitchError && !store.form.pitch_example" 
+          class="v-messages"
+        >
+          <div class="v-messages__message" style="color: #ef4444;">
+            Required
+          </div>
+        </div>
+
+        <!-- Hint -->
+        <div class="v-messages">
+          <div class="v-messages__message">
+            1-2 paragraphs showing your natural pitch style. You can type or record.
+          </div>
+        </div>
       </div>
 
       <!-- =========================================
@@ -179,10 +189,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useOnboardingStore } from '@/stores/onboarding.store'
+import PitchCapture from '@/components/onboarding/PitchCapture.vue'
 
 const store = useOnboardingStore()
 
 const formRef = ref()
+const showPitchError = ref(false)
 
 const communicationStyleOptions = [
   'Formal & Professional',
@@ -204,6 +216,11 @@ const required = (v: string) =>
 
 async function handleNext() {
   const { valid } = await formRef.value.validate()
+
+   if (!store.form.pitch_example || !store.form.pitch_example.trim()) {
+    store.error = 'Please record or type your pitch'
+    return
+  }
 
   if (!valid) return
 
@@ -325,6 +342,14 @@ async function handleNext() {
 
 .field-wrapper {
   margin-bottom: 22px;
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
 }
 
 .custom-field {

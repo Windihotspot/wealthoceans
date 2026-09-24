@@ -80,25 +80,27 @@ const fieldProps = {
 }
 const required = (v: string) => !!v || 'Required'
 
-async function handleSubmit() {
-router.push('/dashboard')
-}
-// async function handleSubmit() {
-//   const { valid } = await formRef.value.validate()
-//   if (!valid) return
 
-//   try {
-//     await authStore.login({ email: email.value, password: password.value })
-//     const redirect = (route.query.redirect as string) || null
-//     if (authStore.needsOnboarding) {
-//       router.push({ name: 'onboarding' })
-//     } else {
-//       router.push(redirect ?? { name: 'dashboard' })
-//     }
-//   } catch {
-    
-//   }
-// }
+
+async function handleSubmit() {
+  const { valid } = await formRef.value.validate()
+  if (!valid) return
+
+  try {
+    await authStore.login({
+      email: email.value,
+      password: password.value
+    })
+
+    const redirect = (route.query.redirect as string) || null
+
+    if (authStore.needsOnboarding) {
+      router.push({ name: 'onboarding' })
+    } else {
+      router.push(redirect ?? { name: 'dashboard' })
+    }
+  } catch {}
+}
 
 async function handleGoogleLogin() {
   await supabase.auth.signInWithOAuth({

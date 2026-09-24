@@ -4,7 +4,7 @@ const allowedOrigins = [
   'http://localhost:3001',
   'http://127.0.0.1:3001',
   // Add your production frontend here
-  // 'https://your-production-domain.com',
+  'https://www.wealthoceanstech.com',
 ]
 
 export function getCorsHeaders(req: Request): Record<string, string> {

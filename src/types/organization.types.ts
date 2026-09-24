@@ -14,6 +14,7 @@ export interface Organization {
  tone_preference: string | null
  key_phrases: string | null
  pitch_example: string | null
+  pitch_audio_url?: string 
  unique_selling_language: string | null
   // Onboarding tracking
   onboarding_step: number
@@ -40,6 +41,7 @@ export interface SaveBusinessProfilePayload {
    tone_preference: string
    key_phrases?: string
    pitch_example: string
+    pitch_audio_url?: string 
    unique_selling_language?: string
  }
 

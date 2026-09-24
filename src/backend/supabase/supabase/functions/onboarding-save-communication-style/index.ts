@@ -14,6 +14,7 @@ interface SaveCommunicationStylePayload {
   tone_preference: string
   key_phrases: string
   pitch_example: string
+  pitch_audio_url?: string // NEW: optional audio URL from storage
   unique_selling_language: string
 }
 
@@ -64,6 +65,7 @@ Deno.serve(async (req: Request) => {
     tone_preference,
     key_phrases,
     pitch_example,
+    pitch_audio_url,
     unique_selling_language
   } = payload
 
@@ -151,6 +153,7 @@ Deno.serve(async (req: Request) => {
       tone_preference: tone_preference.trim(),
       key_phrases: key_phrases?.trim() || null,
       pitch_example: pitch_example.trim(),
+      pitch_audio_url: pitch_audio_url || null, // NEW: save audio URL
       unique_selling_language:
         unique_selling_language?.trim() || null,
       onboarding_step: 4

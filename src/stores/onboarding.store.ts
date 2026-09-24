@@ -20,6 +20,7 @@ interface OnboardingState {
     tone_preference: string
     key_phrases: string
     pitch_example: string
+     pitch_audio_url: string,
     unique_selling_language: string
   }
 }
@@ -42,6 +43,7 @@ export const useOnboardingStore = defineStore('onboarding', {
       tone_preference: '',
       key_phrases: '',
       pitch_example: '',
+       pitch_audio_url: '',
       unique_selling_language: ''
     }
   }),
@@ -90,14 +92,17 @@ export const useOnboardingStore = defineStore('onboarding', {
     async submitCommunicationStyle() {
       this.error = null
       this.isSubmitting = true
-      try {
-        await OnboardingService.saveCommunicationStyle({
+      const payload = {
           communication_style: this.form.communication_style,
           tone_preference: this.form.tone_preference,
           key_phrases: this.form.key_phrases,
           pitch_example: this.form.pitch_example,
+            pitch_audio_url: this.form.pitch_audio_url, 
           unique_selling_language: this.form.unique_selling_language
-        })
+        }
+        console.log("communicate style payload:", payload)
+      try {
+        await OnboardingService.saveCommunicationStyle(payload)
         this.currentStep = 4
       } catch (err: any) {
         this.error = err.response?.data?.message || 'Failed to save communication profile'
