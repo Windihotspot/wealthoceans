@@ -1,9 +1,10 @@
-// _shared/cors.ts
-
 const allowedOrigins = [
   'http://localhost:3001',
   'http://127.0.0.1:3001',
-  // Add your production frontend here
+
+  'http://wealthoceanstech.com',
+  'http://www.wealthoceanstech.com',
+  'https://wealthoceanstech.com',
   'https://www.wealthoceanstech.com',
 ]
 
