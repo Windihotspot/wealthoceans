@@ -1,38 +1,129 @@
 const sidebarItems = [
   {
-    title: 'Dashboard',
-    path: '/dashboard',
-    icon: 'mdi-view-dashboard', // Dashboard icon
+    section: 'LCI COMMAND CENTER',
+    items: [
+      {
+        title: 'Dashboard',
+        path: '/dashboard',
+         icon: 'fa-solid fa-chart-line',
+      },
+      {
+        title: 'AI Sales Closer',
+        path: '/ai-sales',
+        icon: 'fa-solid fa-wand-magic-sparkles',
+        badge: 'AI',
+      },
+      {
+        title: 'Analytics',
+        path: '/analytics',
+        icon: 'fa-solid fa-chart-line',
+      },
+    ],
   },
+
   {
-    title: 'Facilities',
-    path: '/facilities',
-    icon: 'mdi-domain', // Building / Database icon
+    section: 'CRM',
+    items: [
+      {
+        title: 'CRM Overview',
+        path: '/crm',
+        icon: 'fa-solid fa-gauge-high',
+      },
+      {
+        title: 'Leads',
+        path: '/crm/leads',
+        icon: 'fa-solid fa-user-plus',
+      },
+      {
+        title: 'Contacts',
+        path: '/crm/contacts',
+        icon: 'fa-solid fa-address-book',
+      },
+      {
+        title: 'Companies',
+        path: '/crm/companies',
+        icon: 'fa-solid fa-building',
+      },
+      {
+        title: 'Deals',
+        path: '/crm/deals',
+        icon: 'fa-solid fa-handshake',
+      },
+      {
+        title: 'Activities',
+        path: '/crm/activities',
+        icon: 'fa-solid fa-list-check',
+      },
+    ],
   },
+
   {
-    title: 'Loans',
-    path: '/loans',
-    icon: 'mdi-cash-multiple', // Loans / Money icon
+    section: 'COMMUNICATIONS',
+    items: [
+      {
+        title: 'Inbox',
+        path: '/communications',
+        icon: 'fa-regular fa-comments',
+        badge: 'NEW',
+      },
+      {
+        title: 'Email',
+        path: '/communications/email',
+        icon: 'fa-regular fa-envelope',
+      },
+      {
+        title: 'Calls',
+        path: '/communications/calls',
+        icon: 'fa-solid fa-phone',
+      },
+      {
+        title: 'Meetings',
+        path: '/communications/meetings',
+        icon: 'fa-solid fa-video',
+      },
+      {
+        title: 'Calendar',
+        path: '/communications/calendar',
+        icon: 'fa-regular fa-calendar',
+      },
+    ],
   },
+
   {
-    title: 'Customers',
-    path: '/customers',
-    icon: 'mdi-account-group', // Users icon
+    section: 'WORKSPACE',
+    items: [
+      {
+        title: 'Funnels & Offers',
+        path: '/funnels',
+        icon: 'fa-solid fa-filter',
+      },
+      {
+        title: 'Integrations',
+        path: '/integrations',
+        icon: 'fa-solid fa-plug',
+      },
+      {
+        title: 'Documents',
+        path: '/documents',
+        icon: 'fa-regular fa-file-lines',
+      },
+    ],
   },
+
   {
-    title: 'Closers',
-    path: '/Closers',
-    icon: 'mdi-account-tie', // User with tie icon
-  },
-  {
-    title: 'Profit & Loss',
-    path: '/profit-loss',
-    icon: 'mdi-chart-line', // Line chart icon to represent financial performance
-  },
-  {
-    title: 'Logs',
-    path: '/logs',
-    icon: 'mdi-history', // Logs / Activity icon
+    section: 'MANAGE',
+    items: [
+      {
+        title: 'Users & Roles',
+        path: '/users',
+        icon: 'fa-solid fa-users-gear',
+      },
+      {
+        title: 'Settings',
+        path: '/settings',
+        icon: 'fa-solid fa-gear',
+      },
+    ],
   },
 ]
 
