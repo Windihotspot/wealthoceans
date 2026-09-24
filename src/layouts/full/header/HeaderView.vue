@@ -73,17 +73,13 @@ const handleLogout = async () => {
   <div class="flex w-full items-center justify-between gap-4">
     <!-- Page title -->
     <div class="min-w-0">
-      <p
-        class="hidden text-[10px] uppercase tracking-[0.16em] text-gray-400 sm:block"
-      >
-        LCI Command Center
-      </p>
+      
 
-      <h1
+      <!-- <h1
         class="mt-0.5 truncate text-[15px] font-semibold text-gray-900"
       >
         {{ currentPage }}
-      </h1>
+      </h1> -->
     </div>
 
     <!-- Header actions -->

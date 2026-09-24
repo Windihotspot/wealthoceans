@@ -36,27 +36,13 @@ const { mdAndUp } = useDisplay()
         v-if="!mdAndUp"
         icon
         variant="text"
-        class="mr-2"
+        class=""
         @click="drawer = !drawer"
       >
         <i class="fa-solid fa-bars text-sm text-gray-600"></i>
       </v-btn>
 
-      <!-- Mobile brand -->
-      <div
-        v-if="!mdAndUp"
-        class="flex items-center gap-2"
-      >
-        <div
-          class="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-purple-700 to-violet-600 text-[10px] font-bold text-white"
-        >
-          WO
-        </div>
-
-        <span class="text-sm font-bold text-gray-900">
-          WealthOceans
-        </span>
-      </div>
+      
 
       <v-spacer />
 
@@ -89,7 +75,7 @@ const { mdAndUp } = useDisplay()
   background: rgba(255, 255, 255, 0.9) !important;
   backdrop-filter: blur(18px);
   border-bottom: 1px solid #ede9fe !important;
-  padding: 0 24px;
+  
 }
 
 .page-wrapper {

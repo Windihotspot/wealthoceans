@@ -18,23 +18,43 @@
   v-bind="fieldProps"
   placeholder="Your Email"
   type="email"
-  prepend-inner-icon="fa-regular fa-envelope"
   :rules="[required]"
   class="auth-field mb-3"
-/>
+>
+  <template #prepend-inner>
+    <i class="fa-regular fa-envelope text-gray-400"></i>
+  </template>
+</v-text-field>
 
 <v-text-field
   v-model="password"
   v-bind="fieldProps"
   placeholder="Password"
   :type="showPassword ? 'text' : 'password'"
-  prepend-inner-icon="fa-solid fa-lock"
-  :append-inner-icon="showPassword ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye'"
-  @click:append-inner="showPassword = !showPassword"
   :rules="[required]"
   class="auth-field mb-4"
-/>
+>
+  <template #prepend-inner>
+    <i class="fa-solid fa-lock text-gray-400"></i>
+  </template>
 
+  <template #append-inner>
+    <button
+      type="button"
+      class="flex cursor-pointer items-center"
+      @click="showPassword = !showPassword"
+    >
+      <i
+        :class="
+          showPassword
+            ? 'fa-regular fa-eye-slash'
+            : 'fa-regular fa-eye'
+        "
+        class="text-gray-400 transition hover:text-gray-600"
+      ></i>
+    </button>
+  </template>
+</v-text-field>
       <v-alert v-if="authStore.error" type="error" variant="tonal" density="compact" class="mb-4">
         {{ authStore.error }}
       </v-alert>
