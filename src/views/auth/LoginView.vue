@@ -94,7 +94,7 @@ const fieldProps = {
   variant: 'outlined' as const,
   rounded: 'md' as const,
   density: 'compact' as const,
-  color: 'primary',
+  color: 'purple',
   baseColor: '#D9D9E2',
   hideDetails: 'auto' as const
 }
@@ -104,6 +104,7 @@ const required = (v: string) => !!v || 'Required'
 
 async function handleSubmit() {
   const { valid } = await formRef.value.validate()
+
   if (!valid) return
 
   try {
@@ -115,11 +116,29 @@ async function handleSubmit() {
     const redirect = (route.query.redirect as string) || null
 
     if (authStore.needsOnboarding) {
-      router.push({ name: 'onboarding' })
-    } else {
-      router.push(redirect ?? { name: 'dashboard' })
+      await router.push({ name: 'onboarding' })
+      return
     }
-  } catch {}
+
+    if (redirect) {
+      await router.push({
+        path: redirect,
+        query: {
+          welcome: 'true'
+        }
+      })
+      return
+    }
+
+    await router.push({
+      name: 'dashboard',
+      query: {
+        welcome: 'true'
+      }
+    })
+  } catch (error) {
+    console.error('[login] Login failed:', error)
+  }
 }
 
 async function handleGoogleLogin() {

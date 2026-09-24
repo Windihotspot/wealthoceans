@@ -1,8 +1,12 @@
-// src/stores/auth.store.ts
 import { defineStore } from 'pinia'
 import AuthService from '@/services/auth.service'
 import OnboardingService from '@/services/onboarding.service'
-import type { AppUser, LoginPayload, OnboardingStatus, SignUpPayload } from '@/types/auth.types'
+import type {
+  AppUser,
+  LoginPayload,
+  OnboardingStatus,
+  SignUpPayload
+} from '@/types/auth.types'
 import type { Organization } from '@/types/organization.types'
 
 interface AuthState {
@@ -27,34 +31,38 @@ export const useAuthStore = defineStore('auth', {
   }),
 
   getters: {
-    needsOnboarding: (state) => state.isAuthenticated && state.onboarding?.completed === false,
-    ownerName: (state) => state.user?.name ?? state.user?.email?.split('@')[0] ?? ''
+    needsOnboarding: (state) =>
+      state.isAuthenticated && state.onboarding?.completed === false,
+
+    ownerName: (state) =>
+      state.user?.name ?? state.user?.email?.split('@')[0] ?? ''
   },
 
   actions: {
     async signUp(payload: SignUpPayload) {
-  this.isLoading = true
-  this.error = null
+      this.isLoading = true
+      this.error = null
 
-  try {
-    const data = await AuthService.signUp(payload)
+      try {
+        const data = await AuthService.signUp(payload)
 
-    console.log('[auth] Signup successful')
-    console.log('[auth] User ID:', data.user?.id)
-    console.log('[auth] Session exists:', !!data.session)
+        console.log('[auth] Signup successful')
+        console.log('[auth] User ID:', data.user?.id)
+        console.log('[auth] Session exists:', !!data.session)
 
-    return data
-  } catch (err: any) {
-    this.error = err.message ?? 'Sign up failed'
-    throw err
-  } finally {
-    this.isLoading = false
-  }
-},
+        return data
+      } catch (err: any) {
+        this.error = err.message ?? 'Sign up failed'
+        throw err
+      } finally {
+        this.isLoading = false
+      }
+    },
 
     async login(payload: LoginPayload) {
       this.isLoading = true
       this.error = null
+
       try {
         await AuthService.login(payload)
         await this.fetchCurrentUser()
@@ -67,50 +75,81 @@ export const useAuthStore = defineStore('auth', {
     },
 
     async logout() {
-      await AuthService.logout()
-      this.$reset()
+      try {
+        await AuthService.logout()
+      } finally {
+        this.$reset()
+      }
     },
 
-    /** Pulls user + organization + onboarding status from the backend. */
     async fetchCurrentUser() {
-      const session = await AuthService.getSession()
-      if (!session) {
-        this.isAuthenticated = false
-        this.initialized = true
-        return
-      }
-
       try {
-        const { user, organization, onboarding } = await OnboardingService.getCurrentUser()
+        const session = await AuthService.getSession()
+
+        if (!session) {
+          this.user = null
+          this.organization = null
+          this.onboarding = null
+          this.isAuthenticated = false
+          return
+        }
+
+        const {
+          user,
+          organization,
+          onboarding
+        } = await OnboardingService.getCurrentUser()
+
         this.user = user
         this.organization = organization
         this.onboarding = onboarding
         this.isAuthenticated = true
+
         console.log('[auth] User:', user)
-        console.log('organization:', organization)
+        console.log('[auth] Organization:', organization)
       } catch (err) {
+        this.user = null
+        this.organization = null
+        this.onboarding = null
         this.isAuthenticated = false
+
         throw err
       } finally {
         this.initialized = true
       }
     },
 
-    /** Call once on app boot (e.g. in App.vue or a router guard). */
     async initAuthListener() {
-      AuthService.onAuthStateChange(async (_event, session) => {
-        if (session) {
-          await this.fetchCurrentUser()
-        } else {
-          this.$reset()
-          this.initialized = true
-        }
-      })
-      await this.fetchCurrentUser()
+      if (this.initialized) return
+
+      try {
+        await this.fetchCurrentUser()
+
+        AuthService.onAuthStateChange((_event, session) => {
+          if (!session) {
+            this.$reset()
+            this.initialized = true
+            return
+          }
+
+          if (this.isAuthenticated) {
+            return
+          }
+
+          this.fetchCurrentUser().catch((error) => {
+            console.error('[auth] Failed to restore session:', error)
+          })
+        })
+      } catch (error) {
+        console.error('[auth] Auth initialization failed:', error)
+        this.isAuthenticated = false
+        this.initialized = true
+      }
     },
 
     setOrganization(org: Organization) {
       this.organization = org
+
       this.onboarding = {
         step: org.onboarding_step,
         completed: org.onboarding_completed
