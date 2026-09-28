@@ -10,6 +10,7 @@ import Faq from '@/views/Faq.vue'
 import HowitWorks from '@/views/HowitWorks.vue'
 import Pricing from '@/views/Pricing.vue'
 import Training from '@/views/Training.vue'
+import Waitlist from '@/views/Waitlist.vue'
 
 const routes: RouteRecordRaw[] = [
   // ==========================================
@@ -25,7 +26,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/waitlist',
     name: 'waitlist',
-    component: HomeView
+    component: Waitlist
   },
 
   {
@@ -79,11 +80,6 @@ const routes: RouteRecordRaw[] = [
     name: 'login',
     component: () => import('@/views/auth/LoginView.vue')
   },
-  {
-    path: '/bmfx',
-    name: 'bmfx',
-    component: () => import('@/views/BMFX.vue')
-  },
 
   // ==========================================
   // ONBOARDING
@@ -97,7 +93,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/dashboard',
     name: 'dashboard',
-     component: () => import('@/views/dashboard/DashboardHome.vue')
+    component: () => import('@/views/dashboard/DashboardHome.vue')
   },
 
   // ==========================================

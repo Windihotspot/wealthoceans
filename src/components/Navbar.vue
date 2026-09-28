@@ -72,6 +72,13 @@ const mobileMenuOpen = ref(true);
         >
           FAQ
         </RouterLink>
+        <RouterLink
+          to="/waitlist"
+          class="transition hover:text-purple-600"
+          exact-active-class="text-purple-600"
+        >
+          Waitlist
+        </RouterLink>
       </div>
 
       <!-- Desktop Actions -->
@@ -187,6 +194,14 @@ const mobileMenuOpen = ref(true);
 
           <RouterLink
             to="/faq"
+            @click="mobileMenuOpen = false"
+            class="transition hover:text-purple-600"
+            exact-active-class="text-purple-600"
+          >
+            FAQ
+          </RouterLink>
+          <RouterLink
+            to="/waitlist"
             @click="mobileMenuOpen = false"
             class="transition hover:text-purple-600"
             exact-active-class="text-purple-600"
