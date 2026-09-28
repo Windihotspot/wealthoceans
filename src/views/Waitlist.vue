@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
     <!-- Navigation Bar -->
-   <Navbar />
+    <Navbar />
 
     <!-- Hero Section -->
     <section id="form" class="relative overflow-hidden pt-20 pb-32">
@@ -19,7 +19,7 @@
               class="inline-flex items-center gap-2 px-4 py-2 bg-purple-600/20 border border-purple-600/40 rounded-full"
             >
               <span class="text-purple-400 text-sm font-semibold uppercase tracking-wide"
-                >🚀 Lead Conversion Infrastructure</span
+                >🚀 AI-Powered Lead Conversion Infrastructure</span
               >
             </div>
 
@@ -38,7 +38,7 @@
 
             <!-- Subheading -->
             <p class="text-lg text-gray-300 leading-relaxed max-w-md">
-              Most businesses don't lose sales because of bad offers. They lose them because
+              A vast number of businesses don't lose sales because of bad offers. They lose them because
               <span class="text-white font-semibold"
                 >nothing happens when interest is highest.</span
               >
@@ -51,12 +51,8 @@
                 objection, and no one closed.
               </p>
               <p class="text-gray-300">
-                Meet
-                <span class="font-semibold text-purple-400"
-                  >LCI (Lead Conversion Infrastructure)</span
-                >
-                — the AI Sales Closer built to actually sell. It qualifies your leads, follows up
-                with them, handles their objections, and closes them into paying customers.
+                LCI is the AI Sales Closer built to actually sell. It qualifies your leads, follows up
+                with them, handles their objections, and closes them into paying customers, across every channel, every hour of every day, on your website, in your ads, and in your social DMs, even when your team is offline.
               </p>
             </div>
 
@@ -65,7 +61,7 @@
               data-aos="fade-up"
               data-aos-delay="200"
               data-aos-duration="800"
-              class="grid grid-cols-2 gap-4 py-4 border-t border-b border-slate-700"
+              class="grid grid-cols-3 gap-4 py-4 border-t border-b border-slate-700"
             >
               <div>
                 <p class="text-2xl font-bold text-purple-400">7×</p>
@@ -73,7 +69,11 @@
               </div>
               <div>
                 <p class="text-2xl font-bold text-purple-400">24/7</p>
-                <p class="text-sm text-gray-400">Qualifying & closing</p>
+                <p class="text-sm text-gray-400">Qualifying, following up, closing</p>
+              </div>
+              <div>
+                <p class="text-2xl font-bold text-purple-400">2 Mo</p>
+                <p class="text-sm text-gray-400">Free for early joiners</p>
               </div>
             </div>
           </div>
@@ -93,10 +93,12 @@
       <div class="max-w-7xl mx-auto px-6">
         <div data-aos="fade-up" data-aos-duration="800" class="text-center mb-16">
           <h2 class="text-4xl font-bold text-white mb-4">
-            The Intelligent Conversion Infrastructure
+            THE INTELLIGENT CONVERSION INFRASTRUCTURE
           </h2>
           <p class="text-gray-400 max-w-2xl mx-auto">
-            LCI works 24/7 across your website, ads, and social DMs — even when your team is offline
+            ✦ No missed follow-ups<br/>
+            ✦ No unanswered objections<br/>
+            ✦ No wasted ad spend
           </p>
         </div>
 
@@ -195,9 +197,9 @@
               </div>
             </div>
             <div>
-              <h3 class="text-lg font-semibold text-white">No Missed Follow-ups</h3>
+              <h3 class="text-lg font-semibold text-white">2 Months Completely Free</h3>
               <p class="text-gray-400 text-sm mt-1">
-                Every lead gets followed up, automatically and persistently.
+                Start using LCI with zero cost for the first 60 days after launch.
               </p>
             </div>
           </div>
@@ -214,9 +216,9 @@
               </div>
             </div>
             <div>
-              <h3 class="text-lg font-semibold text-white">No Poor Conversions</h3>
+              <h3 class="text-lg font-semibold text-white">49% Off for 6 Months After That</h3>
               <p class="text-gray-400 text-sm mt-1">
-                AI handles objections with proven sales tactics.
+                After your free trial, enjoy nearly half off for the next 6 months.
               </p>
             </div>
           </div>
@@ -233,9 +235,9 @@
               </div>
             </div>
             <div>
-              <h3 class="text-lg font-semibold text-white">No Wasted Ad Spend</h3>
+              <h3 class="text-lg font-semibold text-white">Priority Onboarding at Launch</h3>
               <p class="text-gray-400 text-sm mt-1">
-                Every lead you pay for actually gets converted into revenue.
+                Get white-glove setup and dedicated support when LCI launches.
               </p>
             </div>
           </div>
@@ -252,9 +254,9 @@
               </div>
             </div>
             <div>
-              <h3 class="text-lg font-semibold text-white">Omnichannel Coverage</h3>
+              <h3 class="text-lg font-semibold text-white">Marketing Insights While You Wait</h3>
               <p class="text-gray-400 text-sm mt-1">
-                Works across your website, ads, and social DMs seamlessly.
+                Receive exclusive tips and strategies to prepare for LCI launch.
               </p>
             </div>
           </div>
@@ -294,7 +296,7 @@
     </section>
 
     <!-- Footer -->
-     <footer class="border-t border-white/5 px-5 py-10 sm:px-8">
+    <footer class="border-t border-white/5 px-5 py-10 sm:px-8">
       <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 sm:flex-row">
         <p class="text-xs text-white/40">
           © {{ new Date().getFullYear() }} Wealth Oceans Technologies. All rights reserved.
