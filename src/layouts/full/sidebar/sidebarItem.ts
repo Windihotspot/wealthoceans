@@ -1,11 +1,29 @@
 const sidebarItems = [
   {
+    section: 'ADMIN COMMAND CENTER',
+    roles: ['admin'],
+    items: [
+     {
+  title: 'Waitlist',
+  path: '/admin/waitlist',
+  icon: 'fa-solid fa-list-check',
+},
+{
+  title: 'Organization',
+  path: '/admin/organizations',
+  icon: 'fa-solid fa-building',
+},
+    ],
+  },
+
+  {
     section: 'LCI COMMAND CENTER',
+    roles: ['user'],
     items: [
       {
         title: 'Dashboard',
         path: '/dashboard',
-         icon: 'fa-solid fa-chart-line',
+        icon: 'fa-solid fa-chart-line',
       },
       {
         title: 'AI Sales Closer',
@@ -23,6 +41,7 @@ const sidebarItems = [
 
   {
     section: 'CRM',
+    roles: ['user'],
     items: [
       {
         title: 'CRM Overview',
@@ -59,6 +78,7 @@ const sidebarItems = [
 
   {
     section: 'COMMUNICATIONS',
+    roles: ['user'],
     items: [
       {
         title: 'Inbox',
@@ -91,6 +111,7 @@ const sidebarItems = [
 
   {
     section: 'WORKSPACE',
+    roles: ['user'],
     items: [
       {
         title: 'Funnels & Offers',
@@ -112,6 +133,7 @@ const sidebarItems = [
 
   {
     section: 'MANAGE',
+    roles: ['user'],
     items: [
       {
         title: 'Users & Roles',

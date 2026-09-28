@@ -95,6 +95,16 @@ const routes: RouteRecordRaw[] = [
     name: 'dashboard',
     component: () => import('@/views/dashboard/DashboardHome.vue')
   },
+  {
+    path: '/admin/waitlist',
+    name: 'admin-waitlist',
+    component: () => import('@/views/admin/Waitlist.vue')
+  },
+  {
+    path: '/admin/organizations',
+    name: 'admin-organizations',
+    component: () => import('@/views/admin/Organization.vue')
+  },
 
   // ==========================================
   // DASHBOARD

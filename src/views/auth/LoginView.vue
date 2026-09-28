@@ -11,50 +11,45 @@
       <i class="fa-brands fa-google mr-2" /> Sign In with Google
     </v-btn> -->
 
-    
     <v-form @submit.prevent="handleSubmit" ref="formRef">
       <v-text-field
-  v-model="email"
-  v-bind="fieldProps"
-  placeholder="Your Email"
-  type="email"
-  :rules="[required]"
-  class="auth-field mb-3"
->
-  <template #prepend-inner>
-    <i class="fa-regular fa-envelope text-gray-400"></i>
-  </template>
-</v-text-field>
+        v-model="email"
+        v-bind="fieldProps"
+        placeholder="Your Email"
+        type="email"
+        :rules="[required]"
+        class="auth-field mb-3"
+      >
+        <template #prepend-inner>
+          <i class="fa-regular fa-envelope text-gray-400"></i>
+        </template>
+      </v-text-field>
 
-<v-text-field
-  v-model="password"
-  v-bind="fieldProps"
-  placeholder="Password"
-  :type="showPassword ? 'text' : 'password'"
-  :rules="[required]"
-  class="auth-field mb-4"
->
-  <template #prepend-inner>
-    <i class="fa-solid fa-lock text-gray-400"></i>
-  </template>
+      <v-text-field
+        v-model="password"
+        v-bind="fieldProps"
+        placeholder="Password"
+        :type="showPassword ? 'text' : 'password'"
+        :rules="[required]"
+        class="auth-field mb-4"
+      >
+        <template #prepend-inner>
+          <i class="fa-solid fa-lock text-gray-400"></i>
+        </template>
 
-  <template #append-inner>
-    <button
-      type="button"
-      class="flex cursor-pointer items-center"
-      @click="showPassword = !showPassword"
-    >
-      <i
-        :class="
-          showPassword
-            ? 'fa-regular fa-eye-slash'
-            : 'fa-regular fa-eye'
-        "
-        class="text-gray-400 transition hover:text-gray-600"
-      ></i>
-    </button>
-  </template>
-</v-text-field>
+        <template #append-inner>
+          <button
+            type="button"
+            class="flex cursor-pointer items-center"
+            @click="showPassword = !showPassword"
+          >
+            <i
+              :class="showPassword ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye'"
+              class="text-gray-400 transition hover:text-gray-600"
+            ></i>
+          </button>
+        </template>
+      </v-text-field>
       <v-alert v-if="authStore.error" type="error" variant="tonal" density="compact" class="mb-4">
         {{ authStore.error }}
       </v-alert>
@@ -100,8 +95,6 @@ const fieldProps = {
 }
 const required = (v: string) => !!v || 'Required'
 
-
-
 async function handleSubmit() {
   const { valid } = await formRef.value.validate()
 
@@ -112,6 +105,17 @@ async function handleSubmit() {
       email: email.value,
       password: password.value
     })
+
+    // Admins go directly to the admin waitlist
+    if (authStore.user?.role?.toLowerCase() === 'admin') {
+      await router.push({
+        path: '/admin/waitlist',
+        query: {
+          welcome: 'true'
+        }
+      })
+      return
+    }
 
     const redirect = (route.query.redirect as string) || null
 

@@ -1,25 +1,42 @@
 <script setup>
+import { computed } from 'vue'
 import sidebarItems from './sidebarItem'
+import { useAuthStore } from '@/stores/auth'
 
 defineEmits(['navigate'])
+
+const authStore = useAuthStore()
+
+const userRole = computed(() => {
+  return authStore.user?.role?.toLowerCase() || ''
+})
+
+const visibleSidebarItems = computed(() => {
+  return sidebarItems.filter((group) => {
+    return group.roles?.includes(userRole.value)
+  })
+})
 </script>
 
 <template>
   <div class="flex h-full flex-col bg-white">
+
     <!-- Logo -->
     <div class="flex h-[76px] shrink-0 items-center border-b border-purple-50 px-6">
-      <router-link to="/dashboard" class="flex items-center gap-3">      
+      <RouterLink to="/dashboard" class="flex items-center gap-3">
         <div>
-          <img src="../../../assets/wealthoceans-removebg-preview.png" alt="">
-         
+          <img
+            src="../../../assets/wealthoceans-removebg-preview.png"
+            alt="WealthOceans"
+          />
         </div>
-      </router-link>
+      </RouterLink>
     </div>
 
     <!-- Navigation -->
-    <nav class="flex-1 overflow-y-auto px-4 py-4 sidebar-scroll">
+    <nav class="sidebar-scroll flex-1 overflow-y-auto px-4 py-4">
       <div
-        v-for="group in sidebarItems"
+        v-for="group in visibleSidebarItems"
         :key="group.section"
         class="mb-5"
       >
@@ -30,12 +47,13 @@ defineEmits(['navigate'])
         </p>
 
         <div class="space-y-1">
-          <router-link
+          <RouterLink
             v-for="item in group.items"
             :key="item.path"
             :to="item.path"
             class="group flex items-center gap-3 rounded-md px-3 py-2.5 transition-all duration-150"
             active-class="sidebar-active"
+            exact-active-class="sidebar-active"
             @click="$emit('navigate')"
           >
             <div
@@ -56,7 +74,7 @@ defineEmits(['navigate'])
             >
               {{ item.badge }}
             </span>
-          </router-link>
+          </RouterLink>
         </div>
       </div>
     </nav>
@@ -85,6 +103,7 @@ defineEmits(['navigate'])
         </p>
       </div>
     </div>
+
   </div>
 </template>
 
