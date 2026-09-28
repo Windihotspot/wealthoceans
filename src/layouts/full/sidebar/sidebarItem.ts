@@ -18,7 +18,7 @@ const sidebarItems = [
 
   {
     section: 'LCI COMMAND CENTER',
-    roles: ['user'],
+    roles: ['marketer'],
     items: [
       {
         title: 'Dashboard',
@@ -41,7 +41,7 @@ const sidebarItems = [
 
   {
     section: 'CRM',
-    roles: ['user'],
+    roles: ['marketer'],
     items: [
       {
         title: 'CRM Overview',
@@ -78,7 +78,7 @@ const sidebarItems = [
 
   {
     section: 'COMMUNICATIONS',
-    roles: ['user'],
+    roles: ['marketer'],
     items: [
       {
         title: 'Inbox',
@@ -111,7 +111,7 @@ const sidebarItems = [
 
   {
     section: 'WORKSPACE',
-    roles: ['user'],
+    roles: ['marketer'],
     items: [
       {
         title: 'Funnels & Offers',
@@ -133,7 +133,7 @@ const sidebarItems = [
 
   {
     section: 'MANAGE',
-    roles: ['user'],
+    roles: ['marketer'],
     items: [
       {
         title: 'Users & Roles',
