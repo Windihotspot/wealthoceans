@@ -9,9 +9,9 @@ const mobileMenuOpen = ref(true);
   <header
     class="sticky top-0 z-50 border-b border-gray-200 bg-white shadow-sm backdrop-blur-xl"
   >
-    <nav
-      class="mx-auto flex w-full items-center justify-between px-5 py-4"
-    >
+   <nav
+  class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8"
+>
       <!-- Logo -->
       <RouterLink to="/" class="flex items-center gap-2">
         <img
