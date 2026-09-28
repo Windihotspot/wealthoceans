@@ -2,7 +2,7 @@
   <MainLayout>
     <div class="min-h-screen bg-[#FAF9FE] text-[#171329]">
       <!-- MAIN CONTENT -->
-      <main class="mx-auto w-full max-w-[1600px] px-5 py-7 lg:px-8">
+      <main class="mx-auto w-full px-5 py-7 lg:px-8">
         <!-- PAGE INTRO -->
         <section class="mb-7">
           <div class="flex flex-col justify-between gap-4 md:flex-row md:items-end">
