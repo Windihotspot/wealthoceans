@@ -178,7 +178,7 @@ const joinWaitlist = async () => {
 
     <!-- Success Message -->
     <v-alert v-if="success" type="success" variant="tonal" class="mt-6 rounded-lg">
-      ✓ You're on the waitlist! Check your email.
+      You're on the waitlist! Check your email.
     </v-alert>
 
     <!-- Error Message -->
