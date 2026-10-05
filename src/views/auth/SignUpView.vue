@@ -181,8 +181,6 @@ async function handleSubmit() {
       )
     }
 
-    // User is now authenticated
-    await authStore.fetchCurrentUser()
 
     router.push('/onboarding')
   } catch (err: any) {
